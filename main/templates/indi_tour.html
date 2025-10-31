@@ -1,0 +1,391 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>indi</title>
+    <!-- http://127.0.0.1:8000/indi-tour/ -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+    <link rel="stylesheet" href="{% static 'css/corp-indi.css'%}">
+</head>
+<body>
+    <header class="header-corp">
+        <nav class="nav-reviews">
+            <!-- 1. Бургер -->
+            <button class="nav-reviews__toggle" aria-label="Открыть меню">☰</button>
+
+            <div class="nav-reviews__logo-block">
+                <a href="{% url 'home' %}">
+                    <img src="/static/images/Lovi Moment logo-1.png" alt="Логотип" class="nav-tour__logo">
+                </a>
+            </div>
+
+            <!-- 2. Само меню -->
+            <div class="nav-reviews__menu" id="reviewsMenu">
+                <ul class="nav-reviews__list">
+                <li><a href="{% url 'about_us' %}">О нас</a></li>
+                <li class="nav-tour__item nav-tour__dropdown">
+                        <a href="{% url 'tour' %}" class="nav-tour__link">Туры</a>
+                        <ul class="nav-tour__submenu">
+                            <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                            <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                            <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                        </ul>
+                    </li>
+                <li><a href="{% url 'gallery' %}">Галерея</a></li>
+                <li><a href="{% url 'blog' %}">Блог</a></li>
+                <li><a href="{% url 'partners' %}">Партнёрам</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-reviews__action">
+                <button class="nav-reviews__btn">
+                <a href="{% url 'sign_tour' %}">
+                    Записаться на тур!
+                    <img src="/static/images/Arrow 1.png" alt="→" />
+                </a>
+                </button>
+                <span class="nav-reviews__lang">En</span>
+            </div>
+        </nav>
+        <section class="corp-tours">
+            <div class="corp-tours__inner">
+                <!-- Левая колонка: заголовок, подзаголовок, кнопка -->
+                 
+                <div class="corp-tours__content">
+                    <!-- <div class="indi-detail__header">
+                        <button class="indi-detail__back">
+                            <img src="/static/images/bgblarr.png" alt="Назад">
+                        </button>
+                        <nav class="indi-detail__breadcrumbs">
+                            <a href="#">Главная</a>
+                            <img
+                                src="{% static 'images/lilOrange.png' %}"
+                                alt="›"
+                                class="indi-breadcrumbs__sep"
+                            >
+                            <span>Индивидуальные туры</span>
+                        </nav>
+                    </div> -->
+                    <h2 class="corp-tours__title">Корпоративные <br>туры</h2>
+                    <p class="corp-tours__subtitle">Перезагрузите команду на природе.</p>
+                    <button class="corp-tours__btn">
+                        <a href="{% url 'sign_tour' %}" style="text-decoration: none; color: #fff; display: inline-flex; justify-content: center; gap: 10px; align-items: center;">
+                             Оставить заявку
+                            <img src="{% static 'images/lilWhitearr.png' %}" alt="→" class="corp-tours__btn-icon">
+                        </a>
+                    </button>
+                </div>
+                <!-- Правая колонка: изображение -->
+                <div class="indi-tours__image">
+                    <img src="{% static 'images/indiPerson.png' %}" alt="Корпоративный тур">
+                </div>
+            </div>
+        </section>
+    </header>
+    <!-- === Индивидуальный тур — герой секции === -->
+    <section class="individual-hero">
+        <!-- вводная надпись -->
+
+        <!-- главный заголовок -->
+        <p class="individual-hero__title">
+            <span class="individual-hero__lead">Хочется путешествовать<br><br></span>
+            В СВОЁМ ТЕМПЕ?<br>
+            БЕЗ ГРУППЫ?<br>
+            ПО ОСОБОМУ МАРШРУТУ?<br>
+            ТУДА, ГДЕ ПО-НАСТОЯЩЕМУ ЦЕПЛЯЕТ?
+        </p>
+
+        <!-- иллюстрация -->
+        <div class="individual-hero__image">
+            <img
+            src="{% static 'images/kolsuIndi.jpg' %}"
+            alt="Индивидуальный тур"
+            >
+        </div>
+
+        <!-- описательный текст -->
+        <p class="individual-hero__desc">
+            Индивидуальный тур от <strong>ЛОВИ МОМЕНТ</strong> – <br>это путешествие, созданное под вас:
+            <span class="accent-blue">с Нулем</span>,
+            <span class="accent-pink">с Душой</span> и
+            <span class="accent-orange">с Заботой</span> о каждой детали.
+        </p>
+
+      
+    </section>
+    <section class="corp-variant">
+        <div class="corp-variant__container">
+            <!-- Заголовок -->
+            <h2 class="corp-variant__title">
+            Плюсы&nbsp;<span class="corp-variant__highlight">Корпоративного тура</span>
+            </h2>
+
+            <!-- Верхний ряд: 3 карточки -->
+            <div class="corp-variant__row">
+            <div class="corp-variant__card">
+                <div class="corp-variant__icon">
+                     <img src="{% static 'images/indiEmo1.png' %}"
+                    alt="Повышение продуктивности"
+                    class="corp-benefits__icon">
+                </div>
+                <h3 class="corp-variant__card-title">Свобода и гибкость</h3>
+                <p class="corp-variant__card-text">
+                Вы сами выбираете даты, продолжительность, стиль отдыха и направления. Мы подстраиваемся под ваш график и ритм.
+                </p>
+            </div>
+            <div class="corp-variant__card">
+                <div class="corp-variant__icon">
+                     <img src="{% static 'images/indimap.png' %}"
+                    alt="Повышение продуктивности"
+                    class="corp-benefits__icon">
+                </div>
+                <h3 class="corp-variant__card-title">Персональный маршрут</h3>
+                <p class="corp-variant__card-text">
+                Любите треккинги? Или хотите больше культуры и спокойствия? Мы подберём маршрут, который совпадает с вашими интересами.
+                </p>
+            </div>
+            <div class="corp-variant__card">
+                <div class="corp-variant__icon">
+                     <img src="{% static 'images/indiEmo2.png' %}"
+                    alt="Повышение продуктивности"
+                    class="corp-benefits__icon">
+                </div>
+                <h3 class="corp-variant__card-title">Приватность и комфорт</h3>
+                <p class="corp-variant__card-text">
+                Путешествие без посторонних. Только вы, ваши близкие и надёжный гид или водитель — там, где нет чужих карт.
+                </p>
+            </div>
+            </div>
+
+            <!-- Нижний ряд: 2 карточки, по центру -->
+            <div class="corp-variant__row corp-variant__row--center">
+            <div class="corp-variant__card">
+                <div class="corp-variant__icon">
+                     <img src="{% static 'images/indiEmo3.png' %}"
+                    alt="Повышение продуктивности"
+                    class="corp-benefits__icon">
+                </div>
+                <h3 class="corp-variant__card-title">Идеально для пар и семей</h3>
+                <p class="corp-variant__card-text">
+                Корпоративный тур — это знак заботы от работодателя. Сотрудники чувствуют внимание и ценность, что усиливает вовлечённость.
+                </p>
+            </div>
+            <div class="corp-variant__card">
+                <div class="corp-variant__icon">
+                     <img src="{% static 'images/emoCorp6.png' %}"
+                    alt="Повышение продуктивности"
+                    class="corp-benefits__icon">
+                </div>
+                <h3 class="corp-variant__card-title">Всё под ключ</h3>
+                <p class="corp-variant__card-text">
+                Организация, транспорт, питание, проживание — всё на нас. Вам не нужно ни о чём беспокоиться.
+                </p>
+            </div>
+            </div>
+        </div>
+    <section class="how-it-works">
+        <div class="how-it-works__inner">
+            <!-- Заголовок -->
+            <h2 class="how-it-works__title">Как это работает?</h2>
+
+            <!-- Список шагов -->
+            <div class="how-it-works__list">
+                <!-- Шаг 1 -->
+                <div class="how-it-works__step">
+                    <div class="how-it-works__icon how-it-works__icon--step1">01</div>
+                    <div class="how-it-works__content">
+                    <p class="how-it-works__subtitle">Оставляете заявку</p>
+                    <p class="how-it-works__text">
+                        Пишите, куда хочется, когда и в каком составе.
+                    </p>
+                    </div>
+                </div>
+
+                <!-- Шаг 2 -->
+                <div class="how-it-works__step">
+                    <div class="how-it-works__icon how-it-works__icon--step2">02</div>
+                    <div class="how-it-works__content">
+                    <p class="how-it-works__subtitle">Мы связываемся с вами</p>
+                    <p class="how-it-works__text">
+                        Уточняем детали, узнаём ваши предпочтения и ожидания от поездки.
+                    </p>
+                    </div>
+                </div>
+
+                <!-- Шаг 3 -->
+                <div class="how-it-works__step">
+                    <div class="how-it-works__icon how-it-works__icon--step3">03</div>
+                    <div class="how-it-works__content">
+                    <p class="how-it-works__subtitle">Создаём маршрут под вас</p>
+                    <p class="how-it-works__text">
+                        Предлагаем 1–2 варианта с разной насыщенностью, бюджетом и стилем.
+                    </p>
+                    </div>
+                </div>
+
+                <!-- Шаг 4 -->
+                <div class="how-it-works__step">
+                    <div class="how-it-works__icon how-it-works__icon--step4">04</div>
+                    <div class="how-it-works__content">
+                    <p class="how-it-works__subtitle">Организуем всё «под ключ»</p>
+                    <p class="how-it-works__text">
+                        Транспорт, проживание, питание, доп. активности — вам остаётся только наслаждаться.
+                    </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Призыв к действию -->
+            <div class="how-it-works__cta">
+                <h3 class="how-it-works__cta-title">Хотите тур под себя?</h3>
+                <p class="how-it-works__cta-text">
+                    Расскажите, что вы ищете — и мы сделаем для вас маршрут, который запомнится на всю жизнь.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="application-section">
+            <div class="application-image"></div>
+            <div class="application-form">
+                <div class="form-inner">
+                <h2>Оставьте заявку уже <span class="highlight">сейчас!</span></h2>
+
+                <form id="applicationForm" action="{% url 'submit_application' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="ФИО" required>
+                    <input type="tel" name="phone" placeholder="Номер телефона" required>
+
+                    <div class="email-block">
+                    <input type="email" name="email" placeholder="E-mail">
+                    <small class="optional">Необязательно</small>
+                    </div>
+
+                    <label class="consent">
+                    <input type="checkbox" name="consent" required>
+                    Я даю согласие на обработку
+                    <a href="#">персональных данных</a>
+                    в соответствии с
+                    <a href="#">политикой обработки</a>
+                    </label>
+
+                    <button type="submit" class="submit-btn">
+                    Записаться на тур!
+                    <img src="/static/images/Arrow 1.png" alt="→" />
+                    </button>
+
+                    <p class="phone-alt">
+                    Или позвоните по номеру<br>
+                    <span>
+                        +996 503 904 904 <br>
+                            +996 705 904 904 <br>
+                            +996 508 904 904 <br>
+                            +996 505 904 904
+                    </span>
+                    </p>
+                </form>
+                </div>
+            </div>
+        </section>
+    <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-col logo-col">
+                    <img src="{% static 'images/Lovi Moment logo-1.png' %}" alt="Lovi Moment Travel" class="footer-logo" />
+                </div>
+
+                <div class="footer-col">
+                    <h4>Главная</h4>
+                    <ul>
+                        <li><a href="{% url 'about_us' %}">О нас</a></li>
+                        <li><a href="{% url 'blog' %}">Блог о Кыргызстане</a></li>
+                        <li><a href="{% url 'corp_tour' %}">Корпоративные туры</a></li>
+                        <li><a href="{% url 'indi_tour' %}">Индивидуальные туры</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                <h4>Туры</h4>
+                    <ul>
+                        <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                        <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                        <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>По другим вопросам</h4>
+                    <p>+996 503 904 904 </p>
+                    <p>+996 705 904 904 </p>
+                    <p>+996 508 904 904 </p>
+                    <p>+996 505 904 904 </p>
+                    <button class="footer-btn"><a href="{% url 'sign_tour' %}">Записаться на тур! </a></button>
+                </div>
+
+                <div class="footer-col address">
+                    <h4>Адрес</h4>
+                    <p>ул. Калык Акиева 66,<br> ТЦ Весна, 3 этаж  С13А</p>
+                    <p><a  class="wattspp" href="https://wa.me/996505904904"><img src="/static/images/free-icon-logo-15713434.png" alt="" style="width: 32px; height: 32px;">996 505 904 904</a></p>
+
+                    <p ><a class="instS" href="https://www.instagram.com/lovimoment_travel/"><img src="" alt=""><img src="/static/images/inst.png" alt="">@lovimoment_travel</a></p>
+                </div>
+            </div>
+        </footer>
+    <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const toggle = document.querySelector('.nav-reviews__toggle');
+                const menu   = document.getElementById('reviewsMenu');
+                const tourItem = document.querySelector('.nav-reviews__dropdown');
+
+                // Открытие/закрытие основного меню
+                toggle.addEventListener('click', e => {
+                e.stopPropagation();
+                menu.classList.toggle('open');
+                });
+
+                // Подменю «Туры» кликом (для mobile)
+                tourItem.addEventListener('click', e => {
+                if (window.innerWidth <= 480) {
+                    e.preventDefault();
+                    tourItem.classList.toggle('open');
+                }
+                });
+
+                // Клик вне — закрыть всё
+                document.addEventListener('click', e => {
+                if (!e.target.closest('.nav-reviews')) {
+                    menu.classList.remove('open');
+                    tourItem.classList.remove('open');
+                }
+                });
+            });
+            // форма ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('applicationForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = new FormData(form);
+
+    fetch(form.action, {
+      method: form.method,
+      body: data,
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(json => {
+      if (json.status === 'ok') {
+        alert('Вы записались на тур');
+        form.reset();
+      } else {
+        alert('Ошибка: ' + (json.error || 'неизвестная'));
+      }
+    })
+    .catch(() => {
+      alert('Не удалось отправить заявку. Попробуйте позже.');
+    });
+  });
+});
+    </script>
+</body>
+</html>

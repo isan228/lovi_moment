@@ -1,0 +1,236 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Туры</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="tour-header">
+        <nav class="nav-tour">
+            <!-- 1. Бургер-кнопка -->
+            <button class="nav-tour__toggle" aria-label="Открыть меню">☰</button>
+
+            <div class="nav-tour__logo-block">
+                <a href="{% url 'home' %}">
+                    <img src="/static/images/Lovi Moment logo.png" alt="Логотип" class="nav-tour__logo">
+                </a>
+            </div>
+
+            <div class="nav-tour__menu" id="navMenu">
+                <ul class="nav-tour__list">
+                <li><a href="{% url 'about_us' %}">О нас</a></li>
+                <li class="nav-tour__item nav-tour__dropdown">
+                    <a href="{% url 'tour' %}" class="nav-tour__link">Туры</a>
+                    <ul class="nav-tour__submenu">
+                        <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                        <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                        <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'gallery' %}">Галерея</a></li>
+                <li><a href="{% url 'blog' %}">Блог</a></li>
+                <li><a href="{% url 'partners' %}">Партнерам</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-tour__action">
+                <button class="nav-tour__btn">
+                <a href="{% url 'sign_tour' %}">
+                    Записаться на тур!
+                </a>
+                </button>
+                <span class="nav-tour__lang">En</span>
+            </div>
+        </nav>
+
+        <div class="header-tour-kg">
+            <div class="tour-kyrg-butt">
+                <div class="long-arrow">
+                    <a href="{% url 'home' %}"><img src="/static/images/big-arrow.png" alt=""></a>
+                </div>
+                <div class="tour-gps">
+                    <a href="{% url 'home' %}">Гланая</a><img src="/static/images/lil-arrow.png" alt="">
+                    <a href="{% url 'tour' %}">Туры</a><img src="/static/images/lil-arrow.png" alt="">
+                    <a href="{% url 'tour' %}">Кыргызстан</a><img src="/static/images/lil-arrow.png" alt="" style="visibility: hidden;">
+                </div>
+
+                <h1 class="big-kg">КЫРГЫЗСТАН</h1>
+
+            </div>
+            <div class="kg-text">
+                <p>
+                    Мы — ваша дверь в удивительный мир Кыргызстана и  Центральной Азии! <br>
+Лови момент предлагает уникальные туры, которые позволят вам исследовать <br> захватывающие пейзажи и богатую культуру этого Кыргызстана.
+                </p>
+            </div>
+            <div class="tour-down-arrow">
+                <a href="#tury"><img src="/static/images/Vector 9.png" alt=""></a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="locations-section" id="tury">
+        <div class="locations-container">
+            <section class="big-gallery">
+                <nav class="gallery-nav">
+                    <ul class="gallery-nav__list">
+                        <li class="gallery-nav__item">
+                        <a href="{% url 'tour' %}" class="gallery-nav__link gallery-nav__link--active">Кыргызстан</a>
+                        </li>
+                        <li class="gallery-nav__item">
+                        <a href="{% url 'uz' %}" class="gallery-nav__link">Узбекистан</a>
+                        </li>
+                        <li class="gallery-nav__item">
+                        <a href="{% url 'kz' %}" class="gallery-nav__link">Казахстан</a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+            <!-- Заголовок -->
+            <div class="locations-title-wrapper">
+                <h2 class="locations-title"> Индивидуальные туры</h2>
+            </div>
+            
+            <!-- Сетка карточек -->
+            <div class="locations-grid">
+            <!-- Карточка -->
+                <a href="/tour-about/" class="location-item">
+                    <img src="/static/images/location.png" alt="Локация 1">
+                    <p>Кел - Суу</p>
+                </a>
+
+                <a href="{% url 'tour_about_1' %}" class="location-item">
+                    <img src="/static/images/ala-kul2.jpg" alt="Локация 1">
+                    <p>Алтын-Арашан и Энилчек</p>
+                </a>
+
+                <a href="{% url 'tour_about_2' %}" class="location-item">
+                    <img src="/static/images/peakL.jpg" alt="Локация 1">
+                    <p>Тур в Алай юг Ош 5 дней</p>
+                </a>
+
+                <a href="{% url 'tour_about_3' %}" class="location-item">
+                    <img src="/static/images/gory2.jpg" alt="Локация 1">
+                    <p>Легенды под небом Кыргызстана</p>
+                </a>
+
+                <a href="{% url 'tour_about_12' %}" class="location-item">
+                    <img src="/static/images/jo2.jpg" alt="Локация 1">
+                    <p>Путь к Сердцу Кыргызстана</p>
+                </a>
+
+                <a href="{% url 'tour_about_4' %}" class="location-item">
+                    <img src="/static/images/kolsu2.jpg" alt="Локация 1">
+                    <p>Тур на 10 дней</p>
+                </a>
+            </div>
+            <div class="locations-title-wrapper">
+                <h2 class="locations-title"> Групповые туры</h2>
+            </div>
+             <div class="locations-grid">
+            <!-- Карточка -->
+                
+
+                <a href="{% url 'tour_about_5' %}" class="location-item">
+                    <img src="/static/images/saryJ1.jpg" alt="Локация 1">
+                    <p>Энилчек 3 дня</p>
+                </a>
+
+                <a href="{% url 'tour_about_6' %}" class="location-item">
+                    <img src="/static/images/altyn2.jpg" alt="Локация 1">
+                    <p>Алтын-Арашан 2 дня 1 ночь</p>
+                </a>
+
+                <a href="{% url 'tour_about_7' %}" class="location-item">
+                    <img src="/static/images/location.png" alt="Локация 1">
+                    <p>Кел-Суу 3 дня и 3 ночи</p>
+                </a>
+
+                <a href="{% url 'tour_about_8' %}" class="location-item">
+                    <img src="/static/images/sonK7.jpg" alt="Локация 1">
+                    <p>Сон-Куль 2 дня 1 ночь</p>
+                </a>
+
+                <a href="{% url 'tour_about_9' %}" class="location-item">
+                    <img src="/static/images/chelek1.jpg" alt="Локация 1">
+                    <p>В сердце Сары-Челека</p>
+                </a>
+
+                <a href="{% url 'tour_about_10' %}" class="location-item">
+                    <img src="/static/images/ysyk1.webp" alt="Локация 1">
+                    <p>ИК 2 дня и 1 ночь</p>
+                </a>
+
+                <a href="{% url 'tour_about_11' %}" class="location-item">
+                    <img src="/static/images/zim1.jpg" alt="Локация 1">
+                    <p>ГБ Каракол 3 дня</p>
+                </a>
+            </div>
+        </div>
+    </section>
+<footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-col logo-col">
+                    <img src="{% static 'images/Lovi Moment logo-1.png' %}" alt="Lovi Moment Travel" class="footer-logo" />
+                </div>
+
+                <div class="footer-col">
+                    <h4>Главная</h4>
+                    <ul>
+                        <li><a href="{% url 'about_us' %}">О нас</a></li>
+                        <li><a href="{% url 'blog' %}">Блог о Кыргызстане</a></li>
+                        <li><a href="{% url 'corp_tour' %}">Корпоративные туры</a></li>
+                        <li><a href="{% url 'indi_tour' %}">Индивидуальные туры</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                <h4>Туры</h4>
+                    <ul>
+                        <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                        <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                        <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>По другим вопросам</h4>
+                    <p>+996 503 904 904 </p>
+                    <p>+996 705 904 904 </p>
+                    <p>+996 508 904 904 </p>
+                    <p>+996 505 904 904 </p>
+                    <button class="footer-btn"><a href="{% url 'sign_tour' %}">Записаться на тур! </a></button>
+                </div>
+
+                <div class="footer-col address">
+                    <h4>Адрес</h4>
+                    <p>ул. Калык Акиева 66,<br> ТЦ Весна, 3 этаж  С13А</p>
+                    <p><a  class="wattspp" href="https://wa.me/996505904904"><img src="/static/images/free-icon-logo-15713434.png" alt="" style="width: 32px; height: 32px;">996 505 904 904</a></p>
+
+                    <p ><a class="instS" href="https://www.instagram.com/lovimoment_travel/"><img src="" alt=""><img src="/static/images/inst.png" alt="">@lovimoment_travel</a></p>
+                </div>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const toggle = document.querySelector('.nav-tour__toggle');
+                const menu   = document.getElementById('navMenu');
+
+                toggle.addEventListener('click', () => {
+                menu.classList.toggle('open');
+                });
+
+                // Закрытие по клику вне меню
+                document.addEventListener('click', e => {
+                if (!e.target.closest('.nav-tour')) {
+                    menu.classList.remove('open');
+                }
+                });
+            });
+        </script>
+
+</body>
+</html>

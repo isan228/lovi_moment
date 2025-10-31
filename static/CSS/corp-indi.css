@@ -1,0 +1,763 @@
+.header-corp {
+    /* border: 1px solid red; */
+    height: 100vh;
+}
+.nav-corp {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 96px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.nav-corp__logo-block {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.nnav-corp__logo {
+  height: 48px;
+  margin-left: 20px;
+}
+
+.nav-corp__menu {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-corp__list {
+  display: flex;
+  list-style: none;
+  gap: 60px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-corp__list li a {
+  color: #4C5A5B;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.nav-corp__list li a:hover {
+  opacity: 0.7;
+}
+
+.nav-corp__action {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding-right: 40px;
+}
+
+.nav-corp__btn {
+  width: 265px;
+  height: 56px;
+  background-color: #fff;
+  color: #4C5A5B;
+  font-size: 20px;
+  font-weight: 500;
+  border: 1px solid #4C5A5B;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-corp__btn:hover {
+  background-color: rgba(247, 247, 247, 0.5);
+}
+
+.nav-corp__lang {
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+  cursor: pointer;
+}
+
+/* ===== Секция «Корпоративные туры» ===== */
+.corp-tours {
+  /* padding: 0 20px; */
+  background: #fff;
+  color: #222;
+}
+
+.corp-tours__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+  margin: 0 auto;
+  /* gap: 40px; */
+  flex-wrap: wrap;
+  /* border: 1px solid green; */
+  height: 100vh;
+}
+
+.corp-tours__content {
+  flex: 1 1 400px;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid blue; */
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 5%;
+  z-index: 999;
+}
+
+.corp-tours__title {
+  font-size: 80px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 16px;
+  color: #4C5A5B;
+}
+
+.corp-tours__subtitle {
+  font-size: 30px;
+  font-weight: 300;
+  margin: 0 0 5rem;
+  color: #4C5A5B;
+}
+
+/* Градиентная кнопка */
+.corp-tours__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: linear-gradient(90deg, #6CC7FF 0%, #FFA74D 100%);
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity .3s;
+  width: 251px;
+  height: 56px;
+  z-index: 9999999999999;
+}
+
+.corp-tours__btn:hover {
+  opacity: .85;
+}
+
+.corp-tours__btn-icon {
+  width: 16px;
+  height: auto;
+}
+
+/* Изображение */
+.corp-tours__image {
+  flex: 1 1 400px;
+  width: 100%;
+  /* height: 100%; */
+  display: flex;
+  align-items: end;
+  justify-content: flex-end;
+  /* border: 1px solid green; */
+  
+}
+
+.indi-tours__image {
+  flex: 1 1 400px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* border: 1px solid green; */
+  position: relative;
+  background-image: url(/static/images/indiBack.jpg);
+  background-size: cover;
+}
+
+.corp-tours__image img {
+  width: 100%;
+  display: block;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.indi-tours__image img {
+  width: 200%;
+  /* border: 1px solid red; */
+  /* display: block; */
+  /* box-shadow: 0 8px 24px rgba(0,0,0,0.1); */
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 33.5%;
+  left: -1%;
+}
+
+
+/* Блок описания под «героем» */
+.corp-tours__description {
+  max-width: 800px;
+  margin: 5rem auto 5rem;
+  text-align: center;
+}
+
+.corp-tours__desc-title {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.corp-tours__desc-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* ==================== */
+
+.corp-benefits {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.corp-benefits__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.corp-benefits__title {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #222;
+}
+
+/* Grid 3×2, адаптивный */
+.corp-benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Карточка */
+.corp-benefits__card {
+  background-color: #F7F7F7;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  text-align: center;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.corp-benefits__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Иконка */
+.corp-benefits__icon {  
+  width: auto;
+  height: 100px;
+  margin-bottom: 16px;
+}
+
+/* Заголовок карточки */
+.corp-benefits__card-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0 0 12px;
+  color: #000000;
+}
+
+/* Текст карточки */
+.corp-benefits__card-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #000000;
+}
+
+/* ===============indi================= */
+
+.indi-detail__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  /* left: 5%; */
+  margin: 3rem 0;
+}
+
+.indi-detail__back {
+  width: 108px;
+  height: 60px;
+  border: none;
+  border-radius: 50px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.indi-detail__breadcrumbs {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+  display: inline;
+  justify-content: center;
+  align-items: center;
+}
+.indi-detail__breadcrumbs a {
+  font-size: 16px;
+  font-weight: 400;
+  color: #FFAD5C;
+  text-decoration: none;
+  margin: 0 4px;
+}
+.indi-detail__breadcrumbs span {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 4px;
+  color: #FFAD5C;
+}
+
+.indi-breadcrumbs__sep {
+  width: 24px;      /* подберите под свой макет */
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* === Секция «Индивидуальный тур» === */
+.individual-hero {
+  width: 90%;
+  /* border: 1px solid red; */
+  margin: 0 auto;
+  padding: 60px 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Вводная строка */
+.individual-hero__lead {
+  font-size: 32px;
+  font-weight: 500;
+  text-align: left;
+  color: #000000;
+
+}
+
+/* Крупный оранжевый заголовок */
+.individual-hero__title {
+  font-size: 40px;
+  line-height: 25px;
+  font-weight: 500;
+  /* border: 1px solid green; */
+
+  text-align: left;
+  color: #F97A05;
+  margin: 0 0 40px;
+  white-space: pre-line; /* Чтобы сохранялись переносы <br> */
+}
+
+/* Картинка с закруглёнными углами */
+
+.individual-hero__image {
+    width: 100%;
+}
+
+.individual-hero__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  /* border: 1px solid red; */
+  display: block;
+  margin: 0 auto 32px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+/* Описание под картинкой */
+.individual-hero__desc {
+  font-size: 20px;
+  color: #4C5A5B;
+  line-height: 1.6;
+  /* max-width: 700px; */
+  font-weight: 500;
+  margin: 0 auto 40px;
+}
+
+/* Цветные слова */
+.accent-blue   { color: #52D1DC; }
+.accent-pink   { color: #52D1DC; }  /* подберите свой розовый */
+.accent-orange { color: #52D1DC; }
+
+/* Градиентная кнопка (если у вас уже есть .gradient-btn, она не перепишется) */
+.individual-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: linear-gradient(90deg, #6CC7FF 0%, #FFA74D 100%);
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+.individual-hero__btn:hover {
+  opacity: .85;
+}
+.individual-hero__btn img {
+  width: 16px;
+  height: auto;
+}
+
+/* === Секция “Плюсы Корпоративного тура” (вариант с 5 карточками) === */
+.corp-variant {
+  background: #fff;
+  padding: 60px 0;
+}
+.corp-variant__container {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+.corp-variant__title {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #000;
+  font-weight: 500;
+}
+.corp-variant__highlight {
+  color: #F8830E;
+}
+
+/* Общие стили рядов */
+.corp-variant__row {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+/* Для нижнего ряда — выравниваем по центру */
+.corp-variant__row--center {
+  justify-content: center;
+}
+
+/* Карточка */
+.corp-variant__card {
+  background: #F7F7F7;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  flex: 1 1 calc(33.333% - 20px);
+  max-width: calc(33.333% - 20px);
+  box-sizing: border-box;
+  transition: transform .3s, box-shadow .3s;
+}
+.corp-variant__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Иконка сверху */
+.corp-variant__icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+/* Заголовок карточки */
+.corp-variant__card-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0 0 12px;
+  color: #000000;
+}
+
+/* Текст карточки */
+.corp-variant__card-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+  .corp-variant__card {
+    flex: 1 1 45%;
+    max-width: 45%;
+  }
+}
+@media (max-width: 600px) {
+  .corp-variant__card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+/* ====================================== */
+
+.how-it-works {
+  background: #fff;
+  padding: 60px 0;
+  /* border: 1px solid red; */
+
+}
+.how-it-works__inner {
+  width: 90%;
+  margin: 0 auto;
+  /* border: 1px solid green; */
+  display: flex;
+  align-items: center;
+  flex-direction: column    ;
+}
+.how-it-works__title {
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #000000;
+}
+
+/* Контейнер шагов */
+.how-it-works__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  gap: 32px;
+  /* border: 1px solid red; */
+
+}
+
+/* Один шаг */
+.how-it-works__step {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 20px;
+  width: 50%;
+  border: 1px solid rgba(0, 0, 255, 0);
+}
+
+/* Иконка-номер */
+.how-it-works__icon {
+  flex-shrink: 0;
+  width: 77px;
+  height: 72px;
+  font-size: 40px;
+  font-weight: 500;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+/* Градиенты для разных шагов */
+.how-it-works__icon--step1 {
+  background: linear-gradient(135deg, #FBB03B, #FF5C5C);
+}
+.how-it-works__icon--step2 {
+  background: linear-gradient(135deg, #4A90E2, #50E3C2);
+}
+.how-it-works__icon--step3 {
+  background: linear-gradient(135deg, #7ED321, #B8E986);
+}
+.how-it-works__icon--step4 {
+  background: linear-gradient(135deg, #D0011B, #F5A623);
+}
+
+/* Текстовая часть шага */
+.how-it-works__content {
+  /* flex: 1; */
+  display: flex;
+  flex-direction: column;
+}
+.how-it-works__subtitle {
+  font-size: 32px;
+  font-weight: 500;
+  margin: 0 0 6px;
+  color: #000000;
+}
+.how-it-works__text {
+  font-size: 20px;
+  font-weight: 300;
+  /* line-height: 1.5; */
+  color: #000000;
+  margin: 0;
+}
+
+/* Призыв */
+.how-it-works__cta {
+  text-align: center;
+  margin-top: 60px;
+}
+.how-it-works__cta-title {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #000;
+}
+.how-it-works__cta-text {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #000;
+  margin: 0 auto;
+  /* max-width: 600px; */
+}
+
+/* Адаптив: шаги в две колонки на средних экранах */
+@media (min-width: 768px) {
+  .how-it-works__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .how-it-works__step {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+
+/* И на три колонки при достаточной ширине */
+@media (max-width: 1024px) {
+  .indi-tours__image {
+    display: none;
+  }
+  .indi-tours__content {
+    flex: 1 1 100%;
+    width: 100%;
+    padding: 40px 5%;
+    align-items: center;   /* центрируем контент по горизонтали */
+    text-align: center;
+  }
+  .indi-tours__title {
+    font-size: 48px;
+  }
+  .indi-tours__subtitle {
+    font-size: 20px;
+    margin-bottom: 2rem;
+  }
+  .individual-hero__title {
+    line-height: 38px;
+  }
+
+  .corp-tours__image {
+    display: none;
+  }
+}
+
+/* Планшеты и небольшие десктопы (≤768px) */
+@media (max-width: 768px) {
+  .corp-tours__image {
+    display: none;
+  }
+  .corp-tours__content {
+    flex: 1 1 100%;
+    width: 100%;
+    padding: 40px 5%;
+    align-items: center;   /* центрируем контент по горизонтали */
+    text-align: center;
+  }
+  .corp-tours__title {
+    font-size: 48px;
+  }
+  .corp-tours__subtitle {
+    font-size: 20px;
+    margin-bottom: 2rem;
+  }
+
+  .individual-hero__title {
+    line-height: 38px;
+  }
+
+  .how-it-works__list {
+    flex-direction: column;
+  }
+  
+  /* === */
+
+  .indi-tours__image {
+    display: none;
+  }
+  .indi-tours__content {
+    flex: 1 1 100%;
+    width: 100%;
+    padding: 40px 5%;
+    align-items: center;   /* центрируем контент по горизонтали */
+    text-align: center;
+  }
+  .indi-tours__title {
+    font-size: 48px;
+  }
+  .indi-tours__subtitle {
+    font-size: 20px;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Смартфоны (≤480px) */
+@media (max-width: 480px) {
+  .corp-tours__image {
+    display: none;
+  }
+
+  .how-it-works__step {
+    width: auto;
+  }
+  .corp-tours__content {
+    padding: 24px 4%;
+  }
+  .corp-tours__title {
+    font-size: 32px;
+  }
+  .corp-tours__subtitle {
+    font-size: 18px;
+    margin-bottom: 1.5rem;
+  }
+  .corp-tours__btn {
+    width: 100%;
+    max-width: 220px;
+    font-size: 18px;
+    padding: 12px 20px;
+  }
+  .indi-tours__image {
+    display: none;
+  }
+  .indi-tours__content {
+    flex: 1 1 100%;
+    width: 100%;
+    padding: 40px 5%;
+    align-items: center;   /* центрируем контент по горизонтали */
+    text-align: center;
+  }
+  .indi-tours__title {
+    font-size: 48px;
+  }
+  .indi-tours__subtitle {
+    font-size: 20px;
+    margin-bottom: 2rem;
+  }
+
+  .indi-detail__header {
+    flex-direction: column;
+    align-items: start;
+  }
+}

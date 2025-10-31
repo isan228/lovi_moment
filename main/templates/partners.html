@@ -1,0 +1,236 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>partners</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+</head>
+<body>
+    <header class="header-reviews" id="parner-header">
+        <nav class="nav-reviews">
+            <!-- 1. Бургер -->
+            <button class="nav-reviews__toggle" aria-label="Открыть меню">☰</button>
+
+            <div class="nav-reviews__logo-block">
+                <a href="{% url 'home' %}">
+                    <img src="/static/images/Lovi Moment logo-1.png" alt="Логотип" class="nav-tour__logo">
+                </a>
+            </div>
+
+            <!-- 2. Само меню -->
+            <div class="nav-reviews__menu" id="reviewsMenu">
+                <ul class="nav-reviews__list">
+                <li><a href="{% url 'about_us' %}">О нас</a></li>
+                <li class="nav-tour__item nav-tour__dropdown">
+                        <a href="{% url 'tour' %}" class="nav-tour__link">Туры</a>
+                        <ul class="nav-tour__submenu">
+                            <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                            <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                            <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                        </ul>
+                    </li>
+                <li><a href="{% url 'gallery' %}">Галерея</a></li>
+                <li><a href="{% url 'blog' %}">Блог</a></li>
+                <li><a href="{% url 'partners' %}">Партнёрам</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-reviews__action">
+                <button class="nav-reviews__btn">
+                    <a href="{% url 'sign_tour' %}">
+                        Записаться на тур!
+                    </a>
+                </button>
+                <span class="nav-reviews__lang">En</span>
+            </div>
+        </nav>
+        <div class="long-arrow-black">
+            <a href="{% url 'home' %}"><img src="/static/images/bgblarr.png" alt=""></a>
+        </div>
+        <section class="reviews-hero">
+            
+            <!-- Хлебные крошки -->
+            <div class="reviews-hero__breadcrumb">
+                <a href="{% url 'home' %}" class="reviews-hero__link">Главная</a>
+                <span class="reviews-hero__sep"><img src="/static/images/lilblarr.png" alt=""></span>
+                <span class="reviews-hero__current">Партнерам</span>
+            </div>
+
+            <!-- Заголовок-изображение -->
+            <div class="reviews-hero__title">
+                <h1 class="BigName" id="orangeName">ПАРТНЕРАМ</h1>
+            </div>
+            <p></p>
+        </section>
+    </header>
+    <section class="textPart">
+        <div class="partcontainer">
+            <p>
+            Компания Lovi Moment Travel выражает искреннюю благодарность за внимание к нашей деятельности и интерес к развитию туристической отрасли Кыргызстана. <br> <br>
+
+Мы туристическая компания, специализирующаяся на организации незабываемых путешествий по живописным регионам Кыргызстана. Наша миссия познакомить иностранных гостей с культурным наследием, природными красотами и уникальными традициями кыргызского народа. Мы с любовью создаём маршруты, которые раскрывают страну в её аутентичности, душевности и гостеприимстве. <br> <br>
+
+В рамках развития и укрепления сотрудничества мы приглашаем вашу компанию стать частью нашей партнёрской сети. Мы уверены, что объединение усилий позволит не только повысить качество туристических услуг, но и значительно расширить аудиторию, привлечь новых клиентов и сформировать устойчивый поток туристов как внутри страны, так и за её пределами. <br> <br>
+
+Мы предлагаем следующие форматы партнёрства: <br>
+    •    Информационное сотрудничество (обмен контентом, публикации, взаимное продвижение) <br>
+    •    Организация совместных туров и программ (включение ваших услуг в наши маршруты) <br>
+    •    Кросс-продвижение в соцсетях и на платформах <br>
+    •    Участие в фестивалях, мероприятиях и инфотурах <br>
+    •    Сотрудничество в области сервиса (транспорт, проживание, гиды, ремесленные мастерские, кейтеринг и т.д.) <br>
+    •    Продажа и бронирование авторских туров через вашу платформу/сайт <br> <br>
+
+Наша команда открыта для диалога, гибка в переговорах и заинтересована в долгосрочном, взаимовыгодном сотрудничестве. Мы стремимся не просто к продвижению услуг, а к созданию качественного туристического продукта, который будет способствовать развитию имиджа Кыргызстана как уникального и привлекательного направления. <br> <br>
+
+Если вы разделяете наши ценности, готовы к обмену опытом и заинтересованы в развитии туристической сферы страны — мы будем рады обсудить возможные форматы взаимодействия.
+        </p>
+        </div>
+        
+    </section>
+    <section class="application-section">
+        <div class="application-image"></div>
+        <div class="application-form">
+            <div class="form-inner">
+            <h2>Оставьте заявку уже <span class="highlight">сейчас!</span></h2>
+
+            <form id="applicationForm" action="{% url 'submit_application' %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="ФИО" required>
+                <input type="tel" name="phone" placeholder="Номер телефона" required>
+
+                <div class="email-block">
+                <input type="email" name="email" placeholder="E-mail">
+                <small class="optional">Необязательно</small>
+                </div>
+
+                <label class="consent">
+                <input type="checkbox" name="consent" required>
+                Я даю согласие на обработку
+                <a href="#">персональных данных</a>
+                в соответствии с
+                <a href="#">политикой обработки</a>
+                </label>
+
+                <button type="submit" class="submit-btn">
+                Записаться на тур!
+                </button>
+
+                <p class="phone-alt">
+                Или позвоните по номеру<br>
+                <span>
+                    +996 503 904 904 <br>
+                            +996 705 904 904 <br>
+                            +996 508 904 904 <br>
+                            +996 505 904 904
+                </span>
+                </p>
+            </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-col logo-col">
+                    <img src="{% static 'images/Lovi Moment logo-1.png' %}" alt="Lovi Moment Travel" class="footer-logo" />
+                </div>
+
+                <div class="footer-col">
+                    <h4>Главная</h4>
+                    <ul>
+                        <li><a href="{% url 'about_us' %}">О нас</a></li>
+                        <li><a href="{% url 'blog' %}">Блог о Кыргызстане</a></li>
+                        <li><a href="{% url 'corp_tour' %}">Корпоративные туры</a></li>
+                        <li><a href="{% url 'indi_tour' %}">Индивидуальные туры</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                <h4>Туры</h4>
+                    <ul>
+                        <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                        <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                        <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>По другим вопросам</h4>
+                    <p>+996 503 904 904 </p>
+                    <p>+996 705 904 904 </p>
+                    <p>+996 508 904 904 </p>
+                    <p>+996 505 904 904 </p>
+                    <button class="footer-btn"><a href="{% url 'sign_tour' %}">Записаться на тур! </a></button>
+                </div>
+
+                <div class="footer-col address">
+                    <h4>Адрес</h4>
+                    <p>ул. Калык Акиева 66,<br> ТЦ Весна, 3 этаж  С13А</p>
+                    <p><a  class="wattspp" href="https://wa.me/996505904904"><img src="/static/images/free-icon-logo-15713434.png" alt="" style="width: 32px; height: 32px;">996 505 904 904</a></p>
+
+                    <p ><a class="instS" href="https://www.instagram.com/lovimoment_travel/"><img src="" alt=""><img src="/static/images/inst.png" alt="">@lovimoment_travel</a></p>
+                </div>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const toggle = document.querySelector('.nav-reviews__toggle');
+                const menu   = document.getElementById('reviewsMenu');
+                const tourItem = document.querySelector('.nav-reviews__dropdown');
+
+                // Открытие/закрытие основного меню
+                toggle.addEventListener('click', e => {
+                e.stopPropagation();
+                menu.classList.toggle('open');
+                });
+
+                // Подменю «Туры» кликом (для mobile)
+                tourItem.addEventListener('click', e => {
+                if (window.innerWidth <= 480) {
+                    e.preventDefault();
+                    tourItem.classList.toggle('open');
+                }
+                });
+
+                // Клик вне — закрыть всё
+                document.addEventListener('click', e => {
+                if (!e.target.closest('.nav-reviews')) {
+                    menu.classList.remove('open');
+                    tourItem.classList.remove('open');
+                }
+                });
+            });
+
+            // форма ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('applicationForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = new FormData(form);
+
+    fetch(form.action, {
+      method: form.method,
+      body: data,
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(json => {
+      if (json.status === 'ok') {
+        alert('Вы записались на тур');
+        form.reset();
+      } else {
+        alert('Ошибка: ' + (json.error || 'неизвестная'));
+      }
+    })
+    .catch(() => {
+      alert('Не удалось отправить заявку. Попробуйте позже.');
+    });
+  });
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>blog</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+</head>
+<body>
+    <header class="blog-header">
+        <nav class="nav-tour">
+            <!-- 1. Бургер-кнопка -->
+            <button class="nav-tour__toggle" aria-label="Открыть меню">☰</button>
+
+            <div class="nav-reviews__logo-block">
+                <a href="{% url 'home' %}">
+                    <img src="/static/images/Lovi Moment logo.png" alt="Логотип" class="nav-tour__logo">
+                </a>
+            </div>
+
+            <div class="nav-tour__menu" id="navMenu">
+                <ul class="nav-tour__list">
+                <li><a href="{% url 'about_us' %}">О нас</a></li>
+                <li class="nav-tour__item nav-tour__dropdown">
+                    <a href="{% url 'tour' %}" class="nav-tour__link">Туры</a>
+                    <ul class="nav-tour__submenu">
+                        <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                        <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                        <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'gallery' %}">Галерея</a></li>
+                <li><a href="{% url 'blog' %}">Блог</a></li>
+                <li><a href="{% url 'partners' %}">Партнерам</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-tour__action">
+                <button class="nav-tour__btn">
+                <a href="{% url 'sign_tour' %}">
+                    Записаться на тур!
+                </a>
+                </button>
+                <span class="nav-tour__lang">En</span>
+            </div>
+        </nav>
+        <section class="reviews-hero">
+            
+            <!-- Хлебные крошки -->
+            <div class="reviews-hero__breadcrumb-orange">
+                <a href="{% url 'home' %}" class="reviews-hero__link-orange">Главная</a>
+                <span class="reviews-hero__sep"><img src="/static/images/lil-arrow.png" alt=""></span>
+                <span class="reviews-hero__current">Блог</span>
+            </div>
+            
+            <!-- Заголовок-изображение -->
+            <div class="reviews-hero__title">
+                <h1 class="BigName">БЛОГ</h1>
+            </div>
+            <div class="reviews-hero__text" style="font-size: 16px; color: #F7F7F7; font-weight: 400; width: auto;">
+                <p>
+                    Откройте для себя культуру, традиции и удивительные места <br> Кыргызстана — в наших историях, советах и путеводителях. <br> 
+Всё, что нужно для яркого и комфортного путешествия.
+                </p>
+            </div>
+        </section>
+        <div class="long-arrow-orange">
+            <a href="{% url 'home' %}"><img src="/static/images/big-arrow.png" alt=""></a>
+        </div>
+    </header>
+    <section class="blog-section">
+        <div class="blog-section__inner">
+            <div class="blog-grid">
+            
+                <!-- Card #1 -->
+                <a href="{% url 'blog_about' %}" class="blog-card">
+                    <img
+                    src="{% static 'images/elechek.jpg' %}"
+                    alt="ЭЛЕЧЕК — секрет национального головного убора"
+                    class="blog-card__image"
+                    >
+                    <h3 class="blog-card__title">
+                    ЭЛЕЧЕК — секрет национального головного убора
+                    </h3>
+                </a>
+                <a href="{% url 'blog_about1' %}" class="blog-card">
+                    <img
+                    src="{% static 'images/krpr1.webp' %}"
+                    alt="ЭЛЕЧЕК — секрет национального головного убора"
+                    class="blog-card__image"
+                    >
+                    <h3 class="blog-card__title">
+                    5 главных национальных праздников Кыргызстана
+                    </h3>
+                </a>
+                <a href="{% url 'blog_about2' %}" class="blog-card">
+                    <img
+                    src="{% static 'images/urta1.jpg' %}"
+                    alt="ЭЛЕЧЕК — секрет национального головного убора"
+                    class="blog-card__image"
+                    >
+                    <h3 class="blog-card__title">
+                    Юрта
+                    </h3>
+                </a>
+                <a href="{% url 'blog_about3' %}" class="blog-card">
+                    <img
+                    src="{% static 'images/epos.jpg' %}"
+                    alt="ЭЛЕЧЕК — секрет национального головного убора"
+                    class="blog-card__image"
+                    >
+                    <h3 class="blog-card__title">
+                    Эпос Манас
+                    </h3>
+                </a>
+                <a href="{% url 'blog_about4' %}" class="blog-card">
+                    <img
+                    src="{% static 'images/nacOd.jpg' %}"
+                    alt="ЭЛЕЧЕК — секрет национального головного убора"
+                    class="blog-card__image"
+                    >
+                    <h3 class="blog-card__title">
+                    Национальная одежда кыргызов
+                    </h3>
+                </a>
+                <a href="{% url 'blog_about5' %}" class="blog-card">
+                    <img
+                    src="{% static 'images/kyrgyz_dishes.jpg' %}"
+                    alt="ЭЛЕЧЕК — секрет национального головного убора"
+                    class="blog-card__image"
+                    >
+                    <h3 class="blog-card__title">
+                    Национальная блюда кыргызов
+                    </h3>
+                </a>
+                <a href="{% url 'blog_about6' %}" class="blog-card">
+                    <img
+                    src="{% static 'images/trad.webp' %}"
+                    alt="ЭЛЕЧЕК — секрет национального головного убора"
+                    class="blog-card__image"
+                    >
+                    <h3 class="blog-card__title">
+                    10 традиций кыргызов, которые удивят туристов
+                    </h3>
+                </a>
+                <a href="{% url 'blog_about7' %}" class="blog-card">
+                    <img
+                    src="{% static 'images/igrytrad.jpg' %}"
+                    alt="ЭЛЕЧЕК — секрет национального головного убора"
+                    class="blog-card__image"
+                    >
+                    <h3 class="blog-card__title">
+                    Традиционные игры кыргызов
+                    </h3>
+                </a>
+                <a href="{% url 'blog_about8' %}" class="blog-card">
+                    <img
+                    src="{% static 'images/kyrgyzstan-nature.webp' %}"
+                    alt="ЭЛЕЧЕК — секрет национального головного убора"
+                    class="blog-card__image"
+                    >
+                    <h3 class="blog-card__title">
+                    Природа Кыргызстана: жемчужины гор и озёр
+                    </h3>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="big-gallery-butt">
+        <button class="gallery-butt"><a href="{% url 'blog_about' %}" style="text-decoration: none; color: #000; display: inline-flex; justify-content: center; align-items: center; gap: 10px;">Показать больше <img src="/static/images/Arrow 1.png" alt="→"/></a></button>
+    </section>
+    <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-col logo-col">
+                    <img src="{% static 'images/Lovi Moment logo-1.png' %}" alt="Lovi Moment Travel" class="footer-logo" />
+                </div>
+
+                <div class="footer-col">
+                    <h4>Главная</h4>
+                    <ul>
+                        <li><a href="{% url 'about_us' %}">О нас</a></li>
+                        <li><a href="{% url 'blog' %}">Блог о Кыргызстане</a></li>
+                        <li><a href="{% url 'corp_tour' %}">Корпоративные туры</a></li>
+                        <li><a href="{% url 'indi_tour' %}">Индивидуальные туры</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                <h4>Туры</h4>
+                    <ul>
+                        <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                        <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                        <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>По другим вопросам</h4>
+                    <p>+996 503 904 904 </p>
+                    <p>+996 705 904 904 </p>
+                    <p>+996 508 904 904 </p>
+                    <p>+996 505 904 904 </p>
+                    <button class="footer-btn"><a href="{% url 'sign_tour' %}">Записаться на тур! </a></button>
+                </div>
+
+                <div class="footer-col address">
+                    <h4>Адрес</h4>
+                    <p>ул. Калык Акиева 66,<br> ТЦ Весна, 3 этаж  С13А</p>
+                    <p><a  class="wattspp" href="https://wa.me/996505904904"><img src="/static/images/free-icon-logo-15713434.png" alt="" style="width: 32px; height: 32px;">996 505 904 904</a></p>
+
+                    <p ><a class="instS" href="https://www.instagram.com/lovimoment_travel/"><img src="" alt=""><img src="/static/images/inst.png" alt="">@lovimoment_travel</a></p>
+                </div>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const toggle = document.querySelector('.nav-tour__toggle');
+                const menu   = document.getElementById('navMenu');
+
+                toggle.addEventListener('click', () => {
+                menu.classList.toggle('open');
+                });
+
+                // Закрытие по клику вне меню
+                document.addEventListener('click', e => {
+                if (!e.target.closest('.nav-tour')) {
+                    menu.classList.remove('open');
+                }
+                });
+            });
+        </script>
+</body>
+</html>

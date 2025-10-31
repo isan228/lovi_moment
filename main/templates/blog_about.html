@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+    <title>Blog about</title>
+</head>
+<body>
+    <header class="header-reviews">
+        <nav class="nav-reviews">
+            <!-- 1. Бургер -->
+            <button class="nav-reviews__toggle" aria-label="Открыть меню">☰</button>
+
+            <div class="nav-reviews__logo-block">
+                <a href="{% url 'home' %}">
+                    <img src="/static/images/Lovi Moment logo-1.png" alt="Логотип" class="nav-tour__logo">
+                </a>
+            </div>
+
+            <!-- 2. Само меню -->
+            <div class="nav-reviews__menu" id="reviewsMenu">
+                <ul class="nav-reviews__list">
+                <li><a href="{% url 'about_us' %}">О нас</a></li>
+                <li class="nav-tour__item nav-tour__dropdown">
+                        <a href="{% url 'tour' %}" class="nav-tour__link">Туры</a>
+                        <ul class="nav-tour__submenu">
+                            <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                            <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                            <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                        </ul>
+                    </li>
+                <li><a href="{% url 'gallery' %}">Галерея</a></li>
+                <li><a href="{% url 'blog' %}">Блог</a></li>
+                <li><a href="{% url 'partners' %}">Партнёрам</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-reviews__action">
+                <button class="nav-reviews__btn">
+                Записаться на тур!
+                </button>
+                <span class="nav-reviews__lang">En</span>
+            </div>
+        </nav>
+        <div class="post-detail__header">
+                <button class="post-detail__back">
+                    <a href="{% url 'home' %}">
+                        <img src="/static/images/bgblarr.png" alt="Назад">
+                    </a>
+                </button>
+                <nav class="post-detail__breadcrumbs">
+                    <a href="{% url 'home' %}">Главная</a>
+                    <img
+                        src="{% static 'images/lilblarr.png' %}"
+                        alt="›"
+                        class="breadcrumbs__sep"
+                    >
+                    <a href="{% url 'blog' %}">Блог</a>
+                    <img
+                        src="{% static 'images/lilblarr.png' %}"
+                        alt="›"
+                        class="breadcrumbs__sep"
+                    >
+                    <span>Элечек</span>
+                </nav>
+
+            </div>
+    </header>
+     <section class="post-detail">
+            <!-- Навигация «Назад» + хлебные крошки -->
+            
+
+            <!-- Заголовок поста -->
+            <h1 class="post-detail__title">Элечек</h1>
+
+            <!-- Дата + автор -->
+            <div class="post-detail__info">
+                <time class="post-detail__date">1 января 2024</time>
+                <div class="post-detail__author">
+                    <img src="/static/images/profile.jpg" alt="Автор" class="post-detail__avatar">
+                    <div class="post-detail__author-meta">
+                        <div class="post-detail__author-label">Автор</div>
+                        <div class="post-detail__author-name">User Name</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Картинка-баннер -->
+            <div class="post-detail__image">
+                <img src="/static/images/blogblog.png" alt="Элечек">
+            </div>
+
+            <!-- Текст статьи -->
+            <div class="post-detail__content">
+                <p>Я люблю изучать кочевую культуру прежде всего потому, что в ней нет случайностей. Каждая деталь, слово, традиция продуманы и имеют практическое применение в жизни. Я люблю говорить: «У кочевников ничего не бывает просто так!»</p>
+
+                <p>Один из самых ярких элементов традиционного женского костюма — головной убор Элечек — не исключение. Этот статусный атрибут носили только замужние женщины, и он имел особый смысл и функциональное назначение.</p>
+
+                <p>Элечек — это отрез белой хлопковой ткани длиной до 40 метров, который наматывался определенным образом на голову у девушки, вступившей в брак.Процесс создания этого головного убора был настоящим искусством: ткань складывалась слоями так, чтобы она не только украшала женщину, но и символизировала её новый статус – хранительницы семейного очага. Считалось, что если первый элечек невесты наматывается ровно и легко, то и семейная жизнь у неё будет счастливой, без больших трудностей и испытаний.</p>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-col logo-col">
+                    <img src="{% static 'images/Lovi Moment logo-1.png' %}" alt="Lovi Moment Travel" class="footer-logo" />
+                </div>
+
+                <div class="footer-col">
+                    <h4>Главная</h4>
+                    <ul>
+                        <li><a href="{% url 'about_us' %}">О нас</a></li>
+                        <li><a href="{% url 'blog' %}">Блог о Кыргызстане</a></li>
+                        <li><a href="{% url 'corp_tour' %}">Корпоративные туры</a></li>
+                        <li><a href="{% url 'indi_tour' %}">Индивидуальные туры</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                <h4>Туры</h4>
+                    <ul>
+                        <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                        <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                        <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>По другим вопросам</h4>
+                    <p>+996 503 904 904 </p>
+                    <p>+996 705 904 904 </p>
+                    <p>+996 508 904 904 </p>
+                    <p>+996 505 904 904 </p>
+                    <button class="footer-btn"><a href="{% url 'sign_tour' %}">Записаться на тур! </a></button>
+                </div>
+
+                <div class="footer-col address">
+                    <h4>Адрес</h4>
+                    <p>ул. Калык Акиева 66,<br> ТЦ Весна, 3 этаж  С13А</p>
+                    <p><a  class="wattspp" href="https://wa.me/996505904904"><img src="/static/images/free-icon-logo-15713434.png" alt="" style="width: 32px; height: 32px;">996 505 904 904</a></p>
+
+                    <p ><a class="instS" href="https://www.instagram.com/lovimoment_travel/"><img src="" alt=""><img src="/static/images/inst.png" alt="">@lovimoment_travel</a></p>
+                </div>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const toggle = document.querySelector('.nav-reviews__toggle');
+                const menu   = document.getElementById('reviewsMenu');
+                const tourItem = document.querySelector('.nav-reviews__dropdown');
+
+                // Открытие/закрытие основного меню
+                toggle.addEventListener('click', e => {
+                e.stopPropagation();
+                menu.classList.toggle('open');
+                });
+
+                // Подменю «Туры» кликом (для mobile)
+                tourItem.addEventListener('click', e => {
+                if (window.innerWidth <= 480) {
+                    e.preventDefault();
+                    tourItem.classList.toggle('open');
+                }
+                });
+
+                // Клик вне — закрыть всё
+                document.addEventListener('click', e => {
+                if (!e.target.closest('.nav-reviews')) {
+                    menu.classList.remove('open');
+                    tourItem.classList.remove('open');
+                }
+                });
+            });
+        </script>
+
+</body>
+</html>

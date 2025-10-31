@@ -1,0 +1,960 @@
+.nav-reviews {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 96px;
+  background-color: #F7F7F7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.nav-reviews__logo-block {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.nav-reviews__logo {
+  height: 48px;
+  margin-left: 20px;
+}
+
+.nav-reviews__menu {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-reviews__list {
+  display: flex;
+  list-style: none;
+  gap: 60px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-reviews__list li a {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: opacity 0.3s;
+  text-transform: uppercase;
+}
+
+.nav-reviews__list li a:hover {
+  opacity: 0.7;
+}
+
+.nav-reviews__action {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding-right: 40px;
+}
+
+.nav-reviews__btn {
+  width: auto;
+  height: auto;
+  padding: 20px;
+  background-color: #fff;
+  color: #4C5A5B;
+  font-size: 20px;
+  font-weight: 500;
+  border: 1px solid #4C5A5B;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-reviews__btn a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #000000;
+}
+
+.nav-reviews__btn:hover {
+  background-color: rgba(247, 247, 247, 0.5);
+}
+
+.nav-reviews__lang {
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+  cursor: pointer;
+}
+
+/* ==== Скрываем бургер по умолчанию ==== */
+.nav-reviews__toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #000;
+  z-index: 1100;
+}
+
+@media (max-width: 768px) {
+  /* Показываем бургер */
+  .nav-reviews__toggle {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+
+  .nav-reviews {
+    height: 56px;
+  }
+
+  /* Прячем логотип и «Оставить отзыв» */
+
+  .nav-reviews__action {
+    display: none;
+  }
+
+  /* Скрываем обычное меню */
+  .nav-reviews__menu {
+    display: none;
+  }
+
+  /* Когда есть класс .open — показываем сайдбар справа */
+  .nav-reviews__menu.open {
+        display: flex;
+        /* flex-direction: column; */
+        position: fixed;
+        top: 10%;
+        right: 0;
+        /* height: 100vh; */
+        /* width: 80%; */
+        /* max-width: 300px; */
+        /* padding-top: 96px; */
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+  }
+
+  /* Список внутри */
+  .nav-reviews__menu.open .nav-reviews__list {
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-reviews__menu.open .nav-reviews__list li {
+    border-bottom: 1px solid #eee;
+  }
+  .nav-reviews__menu.open .nav-reviews__list li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-reviews__menu.open .nav-reviews__list li a {
+    display: block;
+    padding: 16px 20px;
+    color: #000;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  /* Подменю «Туры» */
+  .nav-reviews__dropdown {
+    position: relative;
+  }
+  .nav-reviews__submenu {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-reviews__dropdown:hover .nav-reviews__submenu,
+  .nav-reviews__dropdown.open .nav-reviews__submenu {
+    display: block;
+  }
+  .nav-reviews__submenu li a {
+    padding-left: 32px;
+    background: #f7f7f7;
+  }
+}
+
+.post-detail__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  left: 5%;
+  margin: 4rem 0;
+  top: 20%
+}
+
+/* ==== Мобильная адаптация: ≤480px ==== */
+@media (max-width: 480px) {
+  /* Показываем бургер */
+  .nav-reviews__toggle {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+
+  .nav-reviews {
+    height: 56px;
+  }
+
+  .post-detail__header {
+    flex-direction: column;
+    align-items: start;
+    gap: 60px;
+    top: auto;
+  }
+
+  /* Прячем логотип и «Оставить отзыв» */
+  .nav-reviews__action {
+    display: none;
+  }
+
+  /* Скрываем обычное меню */
+  .nav-reviews__menu {
+    display: none;
+  }
+
+  /* Когда есть класс .open — показываем сайдбар справа */
+  .nav-reviews__menu.open {
+        display: flex;
+        /* flex-direction: column; */
+        position: fixed;
+        top: 10%;
+        right: 0;
+        /* height: 100vh; */
+        /* width: 80%; */
+        /* max-width: 300px; */
+        /* padding-top: 96px; */
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+  }
+
+  /* Список внутри */
+  .nav-reviews__menu.open .nav-reviews__list {
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-reviews__menu.open .nav-reviews__list li {
+    border-bottom: 1px solid #eee;
+  }
+  .nav-reviews__menu.open .nav-reviews__list li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-reviews__menu.open .nav-reviews__list li a {
+    display: block;
+    padding: 16px 20px;
+    color: #000;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  /* Подменю «Туры» */
+  .nav-reviews__dropdown {
+    position: relative;
+  }
+  .nav-reviews__submenu {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-reviews__dropdown:hover .nav-reviews__submenu,
+  .nav-reviews__dropdown.open .nav-reviews__submenu {
+    display: block;
+  }
+  .nav-reviews__submenu li a {
+    padding-left: 32px;
+    background: #f7f7f7;
+  }
+}
+
+
+/* ============================================== */
+
+.header-reviews {
+    position: relative;
+    height: 50vh;
+}
+
+.header-sign {
+  position: relative;
+  height: auto;
+}
+
+
+/* отзвы */
+
+.long-arrow-black {
+    position: absolute;
+    top: 20vh;
+    left: 5%;
+    width: 108px;
+    height: 59px;
+    background-color: #FFFFFF4D;
+    border-radius: 50px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .long-arrow-black {
+    top: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  #costyl {
+    top: 20%;
+  }
+
+}
+
+.long-arrow-black a {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  
+}
+
+.reviews-hero {
+  width: 80%;
+  text-align: center;
+  /* padding: 80px 0; */
+  /* border: 1px solid red; */
+  position: absolute;
+  transform: translate(-50%);
+  top: 20vh;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* Хлебные крошки */
+.reviews-hero__breadcrumb {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 32px;
+  display: inline-flex;
+  align-items: center;
+}
+
+
+
+.reviews-hero__link {
+  color: #000;
+  text-decoration: none;
+  margin-right: 8px;
+  transition: opacity .2s;
+}
+.reviews-hero__link:hover {
+  opacity: .7;
+}
+
+.reviews-hero__sep {
+  margin: 0 8px;
+  color: #222;
+}
+
+.reviews-hero__current {
+  /* color: #222; */
+  font-weight: 500;
+}
+
+/* Заголовок-изображение */
+.reviews-hero__title img {
+  height: auto;
+}
+
+
+
+/* МАЗАЙКА */
+
+.reviews-mosaic {
+  padding: 60px 20px;
+}
+
+.reviews-mosaic__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 120px;         /* высота “базовой” строки */
+  gap: 16px;
+  grid-auto-flow: dense;         /* заполнение “дыр” */
+}
+
+/* модификаторы */
+.reviews-mosaic__item--tall {
+  grid-row: span 3;              /* элемент в 2 ряда */
+}
+.reviews-mosaic__item--wide {
+  grid-column: span 2;           /* элемент в 2 колонки */
+}
+
+/* общие стили плитки */
+.reviews-mosaic__item {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.reviews-mosaic__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.reviews-mosaic__item:hover img {
+  transform: scale(1.1);
+}
+
+/* =========== Десктоп (по умолчанию) =========== */
+/* .reviews-mosaic__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 120px;
+  gap: 16px;
+  grid-auto-flow: dense;
+} */
+
+/* =========== Большие планшеты/неб. десктопы (≤1024px) =========== */
+@media (max-width: 1024px) {
+  .reviews-mosaic__grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 100px;
+    gap: 14px;
+  }
+}
+
+/* =========== Планшеты (≤768px) =========== */
+@media (max-width: 768px) {
+  .reviews-mosaic__grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 90px;
+    gap: 12px;
+  }
+}
+
+/* =========== Смартфоны (≤480px) =========== */
+@media (max-width: 480px) {
+  .reviews-mosaic__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 80px;
+    gap: 8px;
+    padding: 0 16px;
+  }
+}
+
+
+/* ==================================================================== */
+
+
+
+/* контейнер-мозаика */
+.mosaic-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;    /* высота «базовой» ячейки */
+  grid-auto-flow: dense;
+  gap: 16px;
+  width: 90%;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* .Dj-gallery {
+  border: 1px solid red;
+} */
+
+/* общий стиль плитки */
+.mosaic-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.mosaic-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+}
+
+/* изображение растягивается на всю плитку */
+.mosaic-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+.mosaic-item:hover img {
+  transform: scale(1.05);
+}
+
+/* первая и четвертая плитки — портретные (span 2 rows) */
+.mosaic-item:nth-child(1),
+.mosaic-item:nth-child(4) {
+  grid-row: span 2;
+}
+
+.mosaic-item:nth-child(3),
+.mosaic-item:nth-child(7) {
+  grid-row: span 2;
+}
+
+/* шестая плитка — широкая (span 2 cols) */
+.mosaic-item:nth-child(6) {
+  grid-column: span 2;
+}
+
+/* планшеты и небольшие десктопы: 3 колонки */
+@media (max-width: 1024px) {
+  .mosaic-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ========== Планшеты (≤768px) ========== */
+@media (max-width: 768px) {
+  .mosaic-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* Отменяем спаны, чтобы всё ложилось ровно по 2 в ряд */
+  .mosaic-item:nth-child(1),
+  .mosaic-item:nth-child(3),
+  .mosaic-item:nth-child(4),
+  .mosaic-item:nth-child(6),
+  .mosaic-item:nth-child(7) {
+    grid-row: auto;
+    grid-column: auto;
+  }
+}
+
+/* ========== Смартфоны (≤480px) ========== */
+@media (max-width: 480px) {
+  .mosaic-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* Убираем все span’ы, чтобы ровно одна картинка за одной */
+  .mosaic-item {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  /* .Dj-gallery {
+    margin-top: 50%;
+  } */
+}
+
+
+.big-gallery-butt {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.gallery-butt {
+  width: 273px;
+  height: 56px;
+  background-color: #fff;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 500;
+  border: 1px solid #000000;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.gallery-butt:hover {
+  background-color: rgba(247, 247, 247, 0.5);
+}
+
+/* ====================================================== */
+
+.long-arrow-orange {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    width: 108px;
+    height: 59px;
+    background-color: #FFFFFF4D;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    
+    justify-content: center;
+}
+
+.long-arrow-orange a {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 768px){
+  .long-arrow-orange {
+    top: 10%;
+
+  }
+
+  /* .header-reviews {
+    height: auto;
+  } */
+
+  .long-arrow-orange img {
+    width: 32px;
+  }
+}
+
+@media (max-width: 480px){
+  .long-arrow-orange {
+    /* top: 15%; */
+    left: 20%;
+    position: relative;
+    width: 48px;
+    height: 32px;
+  }
+
+  #gallery-header {
+    height: 50vh;
+    margin-top: 15%
+  }
+
+  #parner-header {
+    margin-top: 15%;
+    height: 50vh;
+  }
+
+  .reviews-hero {
+    /* top: 30%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reviews-hero__title img {
+    width: 90%;
+  }
+
+  .reviews-hero__breadcrumb-orange {
+    height: 28px;
+
+  }
+}
+
+/* ===== секция Блога ===== */
+.blog-section {
+  padding: 60px 20px;
+}
+
+.blog-section__inner {
+  max-width: 1143px;
+  margin: 0 auto;
+}
+
+/* сама сетка: 3 колонки + 46px промежуток */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 46px;
+}
+
+/* карточка */
+.blog-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+}
+
+/* картинка */
+.blog-card__image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  max-height: 230px;
+  min-height: 230px;
+}
+
+/* заголовок */
+.blog-card__title {
+  margin: 16px;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #222;
+}
+
+.blog-header {
+  /* border: 1px solid red; */
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/static/images/blogBack.png');
+  background-size: cover;
+}
+
+/* ============================
+   Блог: планшеты (≤768px)
+   ============================ */
+@media (max-width: 768px) {
+  .blog-section {
+    padding: 40px 16px;
+  }
+  .blog-section__inner {
+    max-width: 100%;
+    padding: 0 16px;
+  }
+  .blog-grid {
+    /* из 3-х в 2 колонки */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .blog-card__title {
+    font-size: 16px;
+    margin: 12px;
+  }
+}
+
+/* ============================
+   Блог: смартфоны (≤480px)
+   ============================ */
+@media (max-width: 480px) {
+  .blog-section {
+    padding: 24px 12px;
+  }
+  .blog-section__inner {
+    padding: 0 12px;
+  }
+  .blog-grid {
+    /* одна колонка */
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .blog-card {
+    /* чуть более компактная тень */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .blog-card__image {
+    /* может пригодиться, чтобы картинки не резались */
+    height: auto;
+  }
+  .blog-card__title {
+    font-size: 14px;
+    margin: 8px;
+    line-height: 1.3;
+  }
+  .blog-header {
+    /* если используете фон на всю высоту, лучше сделать auto */
+    /* height: auto; */
+    padding: 40px 0;
+    background-position: center top;
+  }
+}
+
+
+.reviews-hero__breadcrumb-orange {
+  width: 233px;
+  height: 36px;
+  font-size: 16px;
+  color: #F7F7F7;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  background-color: #FFFFFF4D;
+}
+
+.reviews-hero__link-orange {
+  color: #F7F7F7;
+  text-decoration: none;
+  margin-right: 8px;
+  transition: opacity .2s;
+}
+.reviews-hero__link-orange:hover {
+  opacity: .7;
+}
+
+
+/* =========================================================== */
+
+.post-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  font-family: sans-serif;
+  color: #000;
+}
+
+/* .post-detail__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  left: 5%;
+  margin: 3rem 0;
+} */
+
+.post-detail__back {
+  width: 108px;
+  height: 60px;
+  border: 1px solid #000000;
+  border-radius: 50px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.post-detail__breadcrumbs {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+}
+.post-detail__breadcrumbs a {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+  text-decoration: none;
+  margin: 0 4px;
+}
+.post-detail__breadcrumbs span {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 4px;
+  color: #000;
+}
+
+.post-detail__title {
+  font-size: 62px;
+  font-weight: 500;
+  margin-top: 24px;
+  line-height: 1.2;
+}
+
+.post-detail__info {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column ;
+  gap: 24px;
+  margin-top: 16px;
+  /* border: 1px solid red; */
+}
+
+.post-detail__date {
+  font-size: 14px;
+  color: #999;
+}
+
+.post-detail__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* border: 1px solid green; */
+}
+
+.post-detail__avatar {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-detail__author-meta {
+  display: flex;
+  align-self: self-start;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333;
+  /* border: 1px solid red; */
+}
+
+.post-detail__author-label {
+  font-size: 14px;
+  color: #7D7D7D;
+  font-weight: 500;
+}
+
+.post-detail__author-name {
+  font-weight: 500;
+}
+
+.post-detail__image {
+  margin-top: 32px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+.post-detail__image img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.post-detail__content {
+  margin-top: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.post-detail__content p {
+  margin-bottom: 24px;
+}
+
+.post-detail__breadcrumbs {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.post-detail__breadcrumbs a,
+.post-detail__breadcrumbs span {
+  color: #000;
+  text-decoration: none;
+}
+
+.breadcrumbs__sep {
+  width: 16px;      /* подберите под свой макет */
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+}

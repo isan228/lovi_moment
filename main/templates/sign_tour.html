@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Записаться на тур</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+</head>
+<body>
+    <header class="header-sign">
+        <nav class="nav-reviews">
+            <div class="nav-reviews__logo-block">
+                <a href="{% url 'home' %}">
+                   <img src="/static/images/Lovi Moment logo-1.png" alt="Логотип" class="nav-tour__logo">
+                </a>
+            </div>
+
+            <div class="nav-reviews__menu">
+                <ul class="nav-reviews__list">
+                    <li><a href="{% url 'about_us' %}">О нас</a></li>
+                    <li class="nav-tour__item nav-tour__dropdown">
+                        <a href="{% url 'tour' %}" class="nav-tour__link">Туры</a>
+                        <ul class="nav-tour__submenu">
+                            <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                            <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                            <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'gallery' %}">Галерея</a></li>
+                    <li><a href="{% url 'blog' %}">Блог</a></li>
+                    <li><a href="{% url 'partners' %}">Партнерам</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-reviews__action">
+                <button class="nav-reviews__btn">
+                    <a href="{% url 'sign_tour' %}">
+                        Записаться на тур!
+                    </a>
+                </button>
+                <span class="nav-reviews__lang">En</span>
+            </div>
+        </nav>
+        <!-- <div class="long-arrow-black">
+            <a href="{% url 'home' %}"><img src="/static/images/bgblarr.png" alt=""></a>
+        </div> -->
+        <!-- <section class="reviews-hero">
+            
+            <div class="reviews-hero__breadcrumb">
+                <a href="{% url 'home' %}" class="reviews-hero__link">Главная</a>
+                <span class="reviews-hero__sep"><img src="/static/images/lilblarr.png" alt=""></span>
+                <span class="reviews-hero__current">Партнерам</span>
+            </div>
+
+            <div class="reviews-hero__title">
+                <img src="{% static 'images/partners.png' %}" alt="Отзывы">
+            </div>
+        </section> -->
+    </header>
+    <section class="application-section">
+            <div class="application-image"></div>
+            <div class="application-form">
+                <div class="form-inner">
+                    <h2>Оставьте заявку уже <span class="highlight">сейчас!</span></h2>
+
+                    <form>
+                        <input type="text" name="name" placeholder="ФИО" required>
+                        <input type="tel" name="phone" placeholder="Номер телефона" required>
+
+                        <div class="email-block">
+                        <input type="email" name="email" placeholder="E-mail">
+                        <small class="optional">Необязательно</small>
+                        </div>
+
+                        <label class="consent">
+                        <input type="checkbox" required>
+                        Я даю согласие на обработку <a href="#">персональных данных</a> в соответствии с <a href="#">политикой обработки</a>
+                        </label>
+
+                        <button type="submit" class="submit-btn">Записаться на тур!</button>
+
+                        <p class="phone-alt">
+                        Или позвоните по номеру<br>
+                        <span>
+                            +996 503 904 904 <br>
+                            +996 705 904 904 <br>
+                            +996 508 904 904 <br>
+                            +996 505 904 904
+                        </span>
+                    
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-col logo-col">
+                    <img src="{% static 'images/Lovi Moment logo-1.png' %}" alt="Lovi Moment Travel" class="footer-logo" />
+                </div>
+
+                <div class="footer-col">
+                    <h4>Главная</h4>
+                    <ul>
+                        <li><a href="{% url 'about_us' %}">О нас</a></li>
+                        <li><a href="{% url 'blog' %}">Блог о Кыргызстане</a></li>
+                        <li><a href="{% url 'corp_tour' %}">Корпоративные туры</a></li>
+                        <li><a href="{% url 'indi_tour' %}">Индивидуальные туры</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                <h4>Туры</h4>
+                    <ul>
+                        <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                        <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                        <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>По другим вопросам</h4>
+                    <p>+996 503 904 904 </p>
+                    <p>+996 705 904 904 </p>
+                    <p>+996 508 904 904 </p>
+                    <p>+996 505 904 904 </p>
+                    <button class="footer-btn"><a href="{% url 'sign_tour' %}">Записаться на тур! </a></button>
+                </div>
+
+                <div class="footer-col address">
+                    <h4>Адрес</h4>
+                    <p>ул. Калык Акиева 66,<br> ТЦ Весна, 3 этаж  С13А</p>
+                    <p><a  class="wattspp" href="https://wa.me/996505904904"><img src="/static/images/free-icon-logo-15713434.png" alt="" style="width: 32px; height: 32px;">996 505 904 904</a></p>
+
+                    <p ><a class="instS" href="https://www.instagram.com/lovimoment_travel/"><img src="" alt=""><img src="/static/images/inst.png" alt="">@lovimoment_travel</a></p>
+                </div>
+            </div>
+        </footer>
+</body>
+</html>

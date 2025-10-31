@@ -1,0 +1,269 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>О нас</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="oNas">
+        <nav class="nav-tour">
+            <!-- 1. Бургер-кнопка -->
+            <button class="nav-tour__toggle" aria-label="Открыть меню">☰</button>
+
+            <div class="nav-tour__logo-block">
+                <a href="{% url 'home' %}">
+                    <img src="/static/images/Lovi Moment logo.png" alt="Логотип" class="nav-tour__logo">
+                </a>
+            </div>
+
+            <div class="nav-tour__menu" id="navMenu">
+                <ul class="nav-tour__list">
+                <li><a href="{% url 'about_us' %}">О нас</a></li>
+                <li class="nav-tour__item nav-tour__dropdown">
+                    <a href="{% url 'tour' %}" class="nav-tour__link">Туры</a>
+                    <ul class="nav-tour__submenu">
+                        <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                        <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                        <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'gallery' %}">Галерея</a></li>
+                <li><a href="{% url 'blog' %}">Блог</a></li>
+                <li><a href="{% url 'partners' %}">Партнерам</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-tour__action">
+                <button class="nav-tour__btn">
+                <a href="{% url 'sign_tour' %}">
+                    Записаться на тур!
+                </a>
+                </button>
+                <span class="nav-tour__lang">En</span>
+            </div>
+        </nav>
+        <div class="header-oNas-kg">
+            <div class="tour-oNas-butt">
+                <div class="long-arrow-kolsu">
+                    <a href="{% url 'home' %}"><img src="/static/images/big-arrow.png" alt=""></a>
+                </div>
+                <div class="tour-gps">
+                    <a href="{% url 'home' %}">Гланая</a><img src="/static/images/lil-arrow.png" alt="">
+                    <a href="#">О нас</a>
+                </div>
+                <h1 class="big-kg">О НАС</h1>
+            </div>
+        </div>
+  </header>
+  <section class="about-us">
+        <!-- Лого -->
+        <div class="about-us__logo">
+            <img src="/static/images/Lovi Moment logo-1 1.svg" alt="Lovi Moment">
+        </div>
+
+        <div class="about-us__intro">
+            <p class="about-us__title">
+            Лови Момент — это про живые эмоции, настоящие приключения и любовь к своей земле.
+            </p>
+            <p class="about-us__subtitle">
+            Мы — туркомпания из Кыргызстана, которая помогает людям со всего мира открыть удивительную природу и культуру нашей страны.
+            </p>
+        </div>
+        <div class="about-us__main">
+            <div class="about-us__gallery">
+                <div class="media-col media-colTall">
+                    <img src="/static/images/fk1.png" alt="" class="media-col__img">
+                </div>
+                <div class="media-col media-colSmall">
+                    <img src="/static/images/fk2.png" alt="" class="media-col__img">
+                    <img src="/static/images/fk3.png" alt="" class="media-col__img">
+                </div>
+            </div>
+            <div class="about-us__text">
+                <p>
+                    С 2019 года организуем авторские туры по Кыргызстану и Центральной Азии:
+                    треккинги, фототуры, культурные маршруты, поездки к озёрам и в горы.
+                    Мы не гонимся за массовостью — для нас важнее качество, атмосфера
+                    и впечатления, которые остаются надолго.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="why-spiral">
+        <div class="why-grid">
+            <!-- ЛЕВЫЙ столбец -->
+            <div class="why-col left">
+            <article id="pm1" class="why-card wide" style="background-image:url('/static/images/pm2.svg');">
+                <div class="why-card__overlay"></div>
+                <div class="why-card__content">
+                <h3 class="why-card__title">1.</h3>
+                <p class="why-card__text">Знаем страну изнутри.  Все маршруты мы проехали сами, каждое озеро, каждую юрту..</p>
+                </div>
+            </article>
+
+            <article id="pm3" class="why-card narrow" style="background-image:url('/static/images/pm3.svg');">
+                <div class="why-card__overlay"></div>
+                <div class="why-card__content">
+                <h3 class="why-card__title">2.</h3>
+                <p class="why-card__text">Уважение к культуре.  Работаем с местными жителями, поддерживаем экологичные подходы.</p>
+                </div>
+            </article>
+            </div>
+
+            <!-- ПРАВЫЙ столбец -->
+            <div class="why-col right">
+            <article id="pm2" class="why-card narrow" style="background-image:url('/static/images/pm2.png');">
+                <div class="why-card__overlay"></div>
+                <div class="why-card__content">
+                <h3 class="why-card__title">3.</h3>
+                <p class="why-card__text">Гибкий подход. 
+Можем адаптировать тур под ваш ритм и интересы — от активных до расслабленных.</p>
+                </div>
+            </article>
+
+            <article id="pm4" class="why-card wide" style="background-image:url('/static/images/pm4.png');">
+                <div class="why-card__overlay"></div>
+                <div class="why-card__content">
+                <h3 class="why-card__title">4.</h3>
+                <p class="why-card__text">Душевная атмосфера. 
+Мы стараемся, чтобы вы чувствовали себя как в путешествии с друзьями, а не в стандартной экскурсии.</p>
+                </div>
+            </article>
+            </div>
+
+            <!-- ЛОГО ПО ЦЕНТРУ -->
+            <img class="why-logo" src="/static/images/Lovi Moment logo-1.png" alt="Логотип">
+        </div>
+    </section>
+
+
+
+    <section class="region-section">
+         <p class="region-section__intro">
+            Наши туры охватывают всю красоту Центральной Азии:
+        </p>
+        <div class="region-section_container">
+            <!-- Заголовок -->
+            <h2 class="region-section__title">Кыргызстан</h2>
+            <!-- Сетка карточек -->
+            <div class="region-grid">
+                <div class="region-card" style="background-image: url('/static/images/land.jpg')">
+                    <span class="region-card__label">Сон-Куль</span>
+                </div>
+                <div class="region-card" style="background-image: url('/static/images/kara.jpg')">
+                    <span class="region-card__label">Кара-Кой</span>
+                </div>
+                <div class="region-card" style="background-image: url('/static/images/sary.jpg')">
+                    <span class="region-card__label">Сары-Челек</span>
+                </div>
+                <div class="region-card" style="background-image: url('/static/images/alay.jpg')">
+                    <span class="region-card__label">Алай</span>
+                </div>
+                <div class="region-card" style="background-image: url('/static/images/koll.jpg')">
+                    <span class="region-card__label">Ысык-Көл</span>
+                </div>
+                <div class="region-card" style="background-image: url('/static/images/kolsu.png')">
+                    <span class="region-card__label">Кёл-Суу</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="extent-section">
+        <div class="extent-container">
+            <h2 class="extent-section__heading">В том числе и в:</h2>
+            <div class="extent-grid">
+            <!-- Казахстан -->
+            <article class="extent-card extent-card--kz">
+                <div class="extent-card__media" style="background-image: url('/static/images/kz2.png')"></div>
+                <h3 class="extent-card__label">Казахстан</h3>
+                <a class="why-card__link" href="{% url 'kz' %}" aria-label="Подробнее"></a>
+            </article>
+            <!-- Узбекистан -->
+            <article class="extent-card extent-card--uz">
+                <div class="extent-card__media" style="background-image: url('/static/images/uz2.png')"></div>
+                <h3 class="extent-card__label">Узбекистан</h3>
+                <a class="why-card__link" href="{% url 'uz' %}" aria-label="Подробнее"></a>
+            </article>
+            </div>
+        </div>
+    </section>
+    <section class="year-round">
+        <div class="yearCont">
+            <div class="year-round__text year-round__text--top">
+                Мы работаем круглогодично — есть летние экспедиции, весенние открытия, осенние фототуры и зимние юртовые программы.
+            </div>
+
+            <div class="year-round__image">
+                <img src="/static/images/Frame 177.png" alt="Lovi Moment">
+            </div>
+
+            <div class="year-round__text year-round__text--bottom">
+                Мы — команда людей, которые сами влюблены в горы и кочевую культуру. И всё, что мы делаем, мы делаем с душой.
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-col logo-col">
+                    <img src="{% static 'images/Lovi Moment logo-1.png' %}" alt="Lovi Moment Travel" class="footer-logo" />
+                </div>
+
+                <div class="footer-col">
+                    <h4>Главная</h4>
+                    <ul>
+                        <li><a href="{% url 'about_us' %}">О нас</a></li>
+                        <li><a href="{% url 'blog' %}">Блог о Кыргызстане</a></li>
+                        <li><a href="{% url 'corp_tour' %}">Корпоративные туры</a></li>
+                        <li><a href="{% url 'indi_tour' %}">Индивидуальные туры</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                <h4>Туры</h4>
+                    <ul>
+                        <li><a href="{% url 'tour' %}">Кыргызстан</a></li>
+                        <li><a href="{% url 'kz' %}">Казахстан</a></li>
+                        <li><a href="{% url 'uz' %}">Узбекистан</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>По другим вопросам</h4>
+                    <p>+996 503 904 904 </p>
+                    <p>+996 705 904 904 </p>
+                    <p>+996 508 904 904 </p>
+                    <p>+996 505 904 904 </p>
+                    <button class="footer-btn"><a href="{% url 'sign_tour' %}">Записаться на тур! </a></button>
+                </div>
+
+                <div class="footer-col address">
+                    <h4>Адрес</h4>
+                    <p>ул. Калык Акиева 66,<br> ТЦ Весна, 3 этаж  С13А</p>
+                    <p><a  class="wattspp" href="https://wa.me/996505904904"><img src="/static/images/free-icon-logo-15713434.png" alt="" style="width: 32px; height: 32px;">996 505 904 904</a></p>
+
+                    <p ><a class="instS" href="https://www.instagram.com/lovimoment_travel/"><img src="" alt=""><img src="/static/images/inst.png" alt="">@lovimoment_travel</a></p>
+                </div>
+            </div>
+        </footer>
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const toggle = document.querySelector('.nav-tour__toggle');
+                const menu   = document.getElementById('navMenu');
+
+                toggle.addEventListener('click', () => {
+                menu.classList.toggle('open');
+                });
+
+                // Закрытие по клику вне меню
+                document.addEventListener('click', e => {
+                if (!e.target.closest('.nav-tour')) {
+                    menu.classList.remove('open');
+                }
+                });
+            });
+        </script>
+</body>
+</html>

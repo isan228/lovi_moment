@@ -1,0 +1,4117 @@
+* {
+   font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+  --ornament-opacity: 0.08;   /* прозрачность узора */
+  --ornament-size: 320px;     /* размер плитки */
+  --ornament-shift: 0px;      /* сдвиг по Y (для параллакса) */
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* прячет всё, что вылезает правее края экрана */
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+  overflow-y: scroll;      /* скролл разрешён */
+  scrollbar-width: hide;
+  z-index: 0;   
+  /* background-color: #F7F7F7; */
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/static/images/ornament.png");
+  background-repeat: repeat;
+  background-size: var(--ornament-size) auto;
+  background-position: 0 0;
+  opacity: var(--ornament-opacity);
+  pointer-events: none;
+  z-index: -1;
+  will-change: background-position, opacity;
+
+  /* 🎞 Анимации */
+  animation: moveBackground 90s linear infinite,
+             fadePattern 45s ease-in-out infinite;
+}
+
+/* Медленное течение фона */
+@keyframes moveBackground {
+  from { background-position: 0 0; }
+  to   { background-position: 500px 500px; }
+}
+
+/* Лёгкая пульсация прозрачности */
+@keyframes fadePattern {
+  0%, 100% { opacity: 0.05; }
+  50%      { opacity: 0.1; }
+}
+
+
+/* Chrome, Edge, Safari */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* прячет всё, что вылезает правее края экрана */
+  scroll-behavior: smooth; /* плавная прокрутка во всех современных браузерах */
+}
+
+
+
+
+/* === Хедер с фоном === */
+.header-section {
+    width: 100%;
+    height: calc(100vh - 88px);
+    padding-top: 88px; /* чтобы контент не был под навбаром */
+    /* background-image: url('/static/images/headerimg.jpg'); */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    /* border: 1px solid red; */
+}
+
+.header-section .header-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* заполняет header без искажений */
+  z-index: -1;
+}
+
+.BigName {
+  font-size: 80px;
+  color: #fff;
+  
+}
+
+#orangeName {
+  color: #FF9500;
+  margin-top: -10%;
+
+}
+
+
+/* === Навбар внутри хедера, но фиксированный === */
+
+
+/* контейнер-пункт с относительным позиционированием */
+.nav-tour__dropdown {
+  position: relative;
+}
+
+/* убираем отступ у вложенного списка */
+.nav-tour__submenu {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  position: absolute;
+  top: 100%;               /* сразу под основной пунктом */
+  left: 0;
+  background: rgb(0 0 0 / 44%);
+  /* border: 1px solid #e0e0e0; */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: none;           /* по умолчанию скрыто */
+  min-width: 160px;
+  z-index: 1000;
+  margin-left: -10%;
+  
+}
+
+/* показываем по ховеру */
+.nav-tour__dropdown:hover .nav-tour__submenu {
+  display: block;
+  
+}
+/* Стили для пунктов подменю */
+.nav-tour__submenu li {
+  width: 100%;
+  
+}
+
+.nav-tour__submenu li a {
+  display: block;
+  padding: 8px 16px;
+  color: #FFF;
+  font-size: 14px;  
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+  
+}
+
+.nav-tour__submenu li a:hover {
+  background: #F8830E;
+}
+
+
+
+
+/* ====================================== */
+.navbar {
+    width: 100vw;
+    height: 88px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.2); /* можно сделать прозрачным */
+    backdrop-filter: blur(10px); /* эффект стекла */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* border: 1px solid red; */
+}
+
+.nav-container {
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.mobile-toggle {
+  display: none;
+}
+
+.nav-menu {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.lang {
+    position: absolute;
+    right: 0;
+    width: 23px;    
+    height: 24px;
+    padding: 24px;
+}
+
+.lang a {
+    text-decoration: none;
+    color: #F7F7F7;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* === Контент в центре хедера === */
+.header-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px
+}
+
+.header-content h1 {
+    color: white;
+    font-size: 48px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+/* Центровка стека */
+.header-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* расстояние между элементами */
+}
+
+#lineUnder {
+    position: relative;
+    top: -60px; /* Поднимает картинку вверх. Меняй по вкусу */
+    z-index: 0;
+}
+
+/* Стили для картинок */
+.stack-img {
+    max-width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+/* Серая кнопка с текстом */
+.text-button {
+    width: auto;
+    height: auto;
+    padding: 20px;
+    background-color: #F7F7F7;
+    color: #4C5A5B;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin-top: -1.5rem; /* примерно 24px, адаптивно */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 25px;
+}
+
+
+
+/* Кнопка с изображением */
+.img-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    top: 1.5rem; /* сдвигает вниз */
+}
+
+.img-button img {
+    width: 48px; 
+    height: auto;
+}
+/* галерея */
+
+.gallery-section {
+    padding: 60px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-x: hidden; /* чтобы скрыть вылезающие картинки */
+}
+  
+.gallery-row {
+    overflow: visible;
+    width: 100%;
+}
+
+/* Общий трек */
+.gallery-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    width: max-content;
+}
+
+/* Картинки */
+.gallery-track img {
+    flex-shrink: 0;              
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Первый ряд — прилегает к левому краю */
+.first-row .gallery-track {
+    margin-left: clamp(16px, 5vw, 2rem);
+    margin-right: clamp(-40px, -10vw, -80px);
+
+    /* Анимация движения влево */
+    animation: scroll-left 40s linear infinite;
+}
+
+/* Второй ряд — прилегает к правому краю */
+.second-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.second-row .gallery-track {
+    margin-left: clamp(-40px, -10vw, -80px);
+    margin-right: clamp(16px, 5vw, 2rem);
+
+    /* Анимация движения вправо */
+    animation: scroll-right 50s linear infinite;
+}
+
+/* Анимации */
+@keyframes scroll-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+    from { transform: translateX(0); }
+    to   { transform: translateX(50%); }
+}
+
+
+
+  
+  /* тур */
+
+  /* ===== Секция туров ===== */
+
+  .tours-section {
+    text-align: center;
+  }
+
+  .tours-section h2 {
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  .carousel-container {
+    position: relative;
+    /* width: 100vw; */
+    overflow: hidden; 
+      
+  }
+
+  .tochkiknopki {
+    position: relative;
+    /* width: 100vw; */
+    height: 110vh;
+    display: flex;
+    overflow: hidden;      /* БЫЛО hidden — убираем! */
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  #last-tour-card {
+     margin-right: calc(50vw - 250px);
+  }
+  .carousel-track {
+    /* position: absolute;   */
+    /* overflow: hidden; */
+    padding-left: calc(50vw - 200px);  /*250px — половина ширины карточки */
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto; 
+    /* white-space: nowrap; */
+    gap: 30px;
+    /* left: 100%; */
+    /* margin-left: 33%; */
+    /* margin-left: 50vw; */
+    /* transform: translateX(-50%,-50%); */
+    /* overflow-x: hidden; */
+    /* z-index: 4; */
+    /* border: 1px solid blue; */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    /* скрываем нативный скроллбар, если нужно */
+    scrollbar-width: none;            /* Firefox */
+    -ms-overflow-style: none;         /* IE 10+ */
+  }
+
+  .carousel-track::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+  .tour-card {
+    min-width: 500px;
+    min-height: 550px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    color: #fff;
+    box-shadow: inset 0 -40px 60px rgba(0, 0, 0, 0.6);
+    flex-shrink: 0;
+    align-items: center;
+    /* position: absolute; */
+    transition: transform 0.4s ease;
+
+  }
+
+  .carousel-dots {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+    z-index: 100;
+    /* border: 1px solid blue; */
+    }
+
+    .carousel-dots .dot {
+      width: 12px;
+      height: 12px;
+      background-color: #ccc;
+      border-radius: 50%;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+.carousel-arrow.left  { left: 20px;  }
+.carousel-arrow.right { right: 20px; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+.carousel-dots .dot {
+  width: 12px;
+  height: 12px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.carousel-dots .current-dot { background: #52D1DC; }
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+  /* overflow: hidden; блокируем скролл, а двигать будем transform */
+}
+
+/* ========== Планшеты (≤1024px) ========== */
+@media (max-width: 1024px) {
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+  }
+  .carousel-arrow img {
+    width: 24px;
+    height: auto;
+  }
+  .carousel-arrow.left {
+    left: 10px;
+  }
+  .carousel-arrow.right {
+    right: 10px;
+  }
+}
+
+/* ========== Мелкие планшеты/большие смартфоны (≤768px) ========== */
+@media (max-width: 768px) {
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .carousel-arrow img {
+    width: 20px;
+  }
+  .carousel-arrow.left {
+    left: 8px;
+  }
+  .carousel-arrow.right {
+    right: 8px;
+  }
+}
+
+/* ========== Смартфоны (≤480px) ========== */
+@media (max-width: 480px) {
+  .carousel-arrow {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+  .carousel-arrow img {
+    width: 16px;
+  }
+  .carousel-arrow.left {
+    left: 5px;
+  }
+  .carousel-arrow.right {
+    right: 5px;
+  }
+  /* по желанию можно скрыть точки или перенести их выше */
+  .carousel-dots {
+    bottom: 5px;
+  }
+}
+
+   
+
+.tour-title {
+  font-weight: 500;
+  font-size: 52px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.tour-dates {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  gap: 20px
+}
+.tour-dates > div {
+  text-align: center;
+}
+.tour-dates span {
+  font-size: 39px;
+  font-weight: 500;
+  display: block;
+}
+.tour-dates small {
+  font-size: 24px;
+  font-weight: 400;
+  display: block;
+}
+.tour-btn {
+  width: 257px;
+  height: 56px;
+  background-color: #f7f7f7;
+  border-radius: 30px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
+  align-items: center;
+  /* gap: 8px; */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 2rem;
+}
+.tour-btn img {
+  width: 20px;
+}
+.tour-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* СТРАНЫ */
+
+.stan {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.stan h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.cards-stan {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cardstan {
+  width: 357px;
+  height: 317px;
+  border-radius: 12px;
+  /* box-shadow: 0 0 5px rgba(0,0,0,0.1); */
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.cardstan img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  margin-bottom: 10px;
+}
+
+.cardstan h3 {
+  margin: 0;
+  margin-bottom: auto;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.cardstan button {
+  width: 147px;
+  height: 51px;
+  border: 1px solid black;
+  border-radius: 25.5px;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px;
+  text-align: center;
+  padding-left: 15px;
+  align-self: flex-start;
+  margin-top: 2rem;
+}
+
+.cardstan a{
+ text-decoration: none;
+ color: #000;
+}
+
+/* ПОЧЕМУ МЫ */
+
+.whyUs {
+  width: 100%;
+  height: 100vh;
+  padding: 0 5%; /*отступы от краёв экрана*/
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.whyUs-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* max-width: 1200px; */
+  height: 600px;
+  /* gap: 20px; */
+  /* border: 1px solid green; */
+}
+
+.whyUs-left, .whyUs-right {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.whyUs-left {
+  justify-content: flex-start; /* верхняя половина */
+  align-items: center; /* по горизонтали по центру */
+  padding-top: 0;
+  /* border: 1px solid green; */
+  padding: 40px 20px;
+  min-height: 400px;
+
+}
+
+.whyUs-left img {
+  max-width: 100%;
+  max-height: 50%; 
+  object-fit: contain;
+}
+
+.whyUs-right {
+  padding: 40px 20px;
+  justify-content: flex-start;
+  text-align: left;
+  /* border: 1px solid blue; */
+  min-height: 400px;
+}
+
+.whyUs-right h2 {
+  font-size: 40px;
+  margin: 0 0 20px 0;
+  font-weight: 700;
+}
+
+.whyUs-right p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+
+
+/* ЭМОДЗИ СЕКЦИЯ */
+
+.stats-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  padding: 80px 20px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.stats-row {
+  display: flex;
+  gap: 120px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat-item {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-icon {
+  width: 140px;
+  height: 84px;
+  margin-bottom: 12px;
+  object-fit: contain;
+}
+
+.stat-number {
+  font-size: 44px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 20px;
+  color: #222;
+  white-space: nowrap;
+}
+
+.stat-label small {
+  display: block;
+  font-size: 16px;
+  color: #000;
+  margin-top: 5px;
+  font-weight: 400;
+}
+
+/* НАША КОМОНДА */
+
+.ourTeam {
+  width: 100%;
+  /* height: 100vh; */
+  padding: 0 5%; /*отступы от краёв экрана*/
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+  margin: 3rem 0;
+}
+
+.ourTeam-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* max-width: 1200px; */
+  /* height: 600px; */
+  /* gap: 20px; */
+  /* border: 1px solid green; */
+}
+
+.ourTeam-left, .ourTeam-right {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.ourTeam-left {
+  justify-content: center; /* верхняя половина */
+  align-items: center; /* по горизонтали по центру */
+  padding-top: 0;
+  /* border: 1px solid green; */
+  padding: 40px 20px;
+  /* min-height: 400px; */
+
+}
+
+.ourTeam-left img {
+  max-width: 100%;
+  max-height: 50%; /* чтобы занимала примерно верхнюю половину */
+  object-fit: contain;
+}
+
+.ourTeam-right {
+  padding: 40px 20px;
+  justify-content: center;
+  text-align: left;
+  /* border: 1px solid blue; */
+  /* min-height: 400px; */
+}
+
+.ourTeam-right h2 {
+  font-size: 40px;
+  margin: 0 0 20px 0;
+  font-weight: 700;
+}
+
+.ourTeam-right p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ОТЗЫВЫ */
+
+.reviews {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 3rem; /* отступ от левой границы */
+  overflow: visible; /* чтобы не обрезать содержимое */
+  margin-top: 7rem;
+}
+
+.orengeText {
+  color: #F8830E;
+}
+
+.reviews-header-two {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.reviews-header-two h2 {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.reviews-header-two button {
+  width: auto;
+  height: auto;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #4C5A5B;
+  color: #4C5A5B;
+  border-radius: 50px;
+  background: none;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.reviews-header h2 {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.reviews-header button {
+  width: 207px;
+  height: 56px;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 50px;
+  background: none;
+  margin-right: 3rem;
+}
+
+.reviews-list {
+  display: flex;
+  align-self: flex-start;
+  gap: 20px;
+  overflow-x: auto; /* включаем горизонтальный скролл */
+  width: 100%;
+  padding-bottom: 10px; /* немного места под скролл */
+  scrollbar-width: none; /* тонкий скролл для Firefox */
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  margin: 3rem 0;
+}
+
+.reviews-list::-webkit-scrollbar {
+  display: none; width: 0; height: 0;
+}
+
+.reviews-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 4px;
+}
+
+/* Карточка — жёсткая высота и колоночный флекс */
+.review-card{
+  flex:0 0 auto;
+  width:320px;
+  height:600px;
+  background:#F7F7F7;
+  border-radius:30px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;           /* ничего не «вылезает» */
+}
+
+/* Верхнее фото — фикс. высота, не тянется */
+.revies-back{
+  flex:0 0 240px;            /* фиксируем высоту картинки */
+  width:100%;
+  background-size:cover;
+  background-position:center;
+  border-radius:30px 30px 0 0;
+}
+
+/* Текстовый блок — занимает остаток высоты и работает как колонка */
+.revies-text{
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+  padding:16px 18px 18px;
+  gap:12px;
+}
+
+/* Заголовки (имя/город) — обычный блок сверху */
+.revies-text .revies-inside:nth-child(1){
+  flex:0 0 auto;
+}
+
+/* Контент — обрезаем по количеству строк */
+.revies-text .revies-inside:nth-child(2){
+  flex:1 1 auto;             /* занимает всё оставшееся пространство */
+  overflow:hidden;           /* скрываем лишнее */
+}
+.revies-text .revies-inside:nth-child(2) p{
+  margin:0;
+  display:-webkit-box;
+  -webkit-line-clamp:10;     /* сколько строк показывать */
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* Ссылка «Читать полностью» — прибита к низу карточки */
+.revies-text .revies-inside:nth-child(3){
+  flex:0 0 auto;
+  margin-top:auto;           /* уводит блок к низу */
+}
+
+
+.revies-back {
+  flex: 2;
+  /* border: 1px solid red; */
+  /* background-image: url('/static/images/reviespic.png'); */
+  background-size: cover;
+  width: 100%;
+  /* margin: 0; */
+  box-sizing: border-box;
+  /* padding: 0; */
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  background-position: 30% 50%;
+
+}
+
+.revies-text {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid green; */
+  width: 100%;
+  /* margin: 0; */
+  box-sizing: border-box;
+  /* padding: 0; */
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+
+}
+
+.revies-text {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* чтобы занять всю высоту родителя */
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.revies-text > .revies-inside {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px; /* небольшой горизонтальный отступ */
+  box-sizing: border-box;
+}
+
+/* Первый блок с заголовками — распределяем по краям */
+.revies-text > .revies-inside:first-child {
+  justify-content: space-between;
+}
+
+.revies-text > .revies-inside:first-child h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+
+}
+
+.revies-inside a {
+  color: #000;
+  text-decoration: none;
+}
+
+.revies-text > .revies-inside:first-child h4 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+
+}
+
+/* Второй блок — текст прижатый к левому краю */
+.revies-text > .revies-inside:nth-child(2) {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.revies-text > .revies-inside:nth-child(2) p {
+  margin: 0;
+  line-height: 1.5;
+  overflow: hidden; /* скрывает лишнее */
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Третий блок — ссылка прижата к правому краю */
+.revies-text > .revies-inside:last-child {
+  justify-content: flex-end;
+}
+
+.revies-text > .revies-inside:last-child a {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+
+
+/* контейнер под стрелки */
+.reviews-controls {
+  display: flex;
+  justify-content: center; /* центруем стрелки по горизонтали */
+  gap: 16px;
+  width: 100%;             /* заполняем всю ширину родителя */
+  margin-top: 20px;        /* отступ над стрелками */
+}
+
+/* стиль стрелок */
+.reviews-arrow {
+  background: #fff;
+  border: none;
+}
+.reviews-arrow img:hover {
+  background: #f0f0f0;
+}
+
+.reviews-arrow img {
+  border-radius: 50px;
+}
+
+
+
+/* ФОРМА ЗАЯВОК */  
+
+.application-section {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  margin-top: 8rem;
+}
+
+.application-image {
+  flex: 1;
+  background-image: url('/static/images/form.png');
+  background-size: cover;
+  background-position: center;
+  /* width: 100vw; */
+}
+
+.application-form {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  /* padding: 40px; */
+}
+
+.form-inner {
+  width: 440px;
+  max-width: 100%;
+}
+
+.application-form h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: #52D1DC;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: none;
+  color: #B4B4B4;
+
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+  height: 57px;
+  padding: 0 16px;
+  border-radius: 8px;
+  /* border: 1px solid #ccc; */
+  border: none;
+  font-size: 16px;
+  background: #F7F7F7;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.email-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.optional {
+  font-size: 14px;
+  color: #52D1DC;
+  text-align: right;
+}
+
+.consent {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.4;
+}
+
+.consent a {
+  color: #F8830E;
+  text-decoration: underline;
+}
+
+.submit-btn {
+  margin-top: 10px;
+  padding: 20px;
+  width: 65%;
+  height: auto;
+  font-size: 20px;
+  color: #4C5A5B;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  border-radius: 25px;
+  border: 1px solid #4C5A5B;
+  background: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: #eaeaea;
+}
+
+.phone-alt {
+  font-size: 15px;
+  font-weight: 400;
+  margin-top: 10px;
+  color: #222;
+  line-height: 1.6;
+  text-align: center;
+  align-self: flex-start;
+}
+
+.phone-alt span {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+
+/*FOOTER */
+
+.footer {
+  background-color: #f7f7f7;
+  padding: 50px 0;
+  width: 100%;
+  margin-top: 5rem;
+}
+
+.footer-inner {
+  display: grid;
+  /* 5 колонок, но каждая не уже 180px */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+
+.footer-col h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+.footer-col p {
+  margin: 6px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.footer-logo {
+  max-width: 120px; /* чуть больше, чем было */
+  height: auto;
+}
+
+.footer-btn {
+  width: auto;
+  padding: 20px;
+  height: auto;
+  margin-top: 15px;
+  border-radius: 25px;
+  background-color: #52D1DC;
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-btn a {
+  text-decoration: none;
+  color: #000;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-btn:hover {
+  background-color: #3bb0ba;
+}
+
+.instS {
+  display: inline-flex;         
+  align-items: center;        
+  justify-content: start; 
+  text-decoration: none;       
+  color: inherit;               
+}
+
+.instS img {
+  margin: 0 8px 0 -4px;
+}
+
+.wattspp {
+  display: inline-flex;         
+  align-items: center;        
+  justify-content: start; 
+  text-decoration: none;       
+  color: inherit; 
+  /* border: 1px solid red; */
+}
+
+.wattspp img {
+  margin: 0 8px 0 0;
+}
+
+.address p {
+  /* если в html используют <br>, они будут срабатываться */
+  white-space: pre-line;
+}
+
+/* ===== Адаптив ===== */
+@media (max-width: 768px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-btn {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+
+/* БЛОК ТУР */
+
+/* НАВБАР */
+
+.nav-tour {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 96px;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  /* padding: 0 40px; */
+  z-index: 1000;
+}
+
+.nav-tour__logo-block {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 20px; /* отступ от левого края */
+}
+
+.nav-tour__logo {
+  height: 48px;
+  margin-left: 20px;
+}
+
+.nav-tour__menu {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid red; */
+}
+
+.nav-tour__list {
+  display: flex;
+  list-style: none;
+  gap: 60px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-tour__list li a {
+  color: #F7F7F7;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: opacity 0.3s;
+  text-transform: uppercase;
+}
+
+.nav-tour__list li a:hover {
+  opacity: 0.7;
+}
+
+.nav-tour__action {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding-right: 40px;
+}
+
+.nav-tour__btn {
+  width: auto;
+  height: auto;
+  padding: 20px 35px;
+  background-color: rgba(247, 247, 247, 0.3);
+  color: #F7F7F7;
+  font-size: 20px;
+  font-weight: 500;
+  border: 1px solid #F7F7F74D;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-tour__btn:hover {
+  background-color: rgba(247, 247, 247, 0.5);
+}
+
+.nav-tour__btn a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #F7F7F7;
+
+}
+
+.nav-tour__lang {
+  font-size: 20px;
+  font-weight: 500;
+  color: #F7F7F7;
+  cursor: pointer;
+}
+
+/* 1) Скрываем бургер на десктопе */
+.nav-tour__toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #F7F7F7;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+/* 2) Общие правила для подпункта */
+.nav-tour__dropdown {
+  position: relative;
+}
+.nav-tour__submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgb(0 0 0 / 44%);
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.nav-tour__dropdown:hover .nav-tour__submenu {
+  display: block;
+}
+.nav-tour__submenu li a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.nav-tour__submenu li a:hover {
+  background: #F8830E;
+}
+
+@media (max-width: 768px) {
+  /* Показываем бургер */
+  .nav-tour__toggle {
+    display: block;
+    position: absolute;
+    top: 50%;
+    order: 2;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+  .nav-tour__logo-block {
+    display: flex;
+    order: 1;           /* ставим первым в строке */
+    padding-left: 16px; /* отступы по вкусу */
+  }
+  .nav-tour__submenu {
+    position: static;
+  }
+
+  .nav-tour {
+    height: 56px;
+  }
+
+  /* Скрываем остальные части nav */
+
+  .nav-tour__action {
+    display: none;
+  }
+  .nav-tour__menu {
+    display: none;
+  }
+
+  /* Когда добавляется класс .open — показываем сайдбар */
+  .nav-tour__menu.open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    right: 0;               /* выезжает от левого края */
+    padding: 16px 0;
+    background: rgb(0 0 0 / 44%);
+    box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  .nav-tour__menu.open .nav-tour__list {
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+  }
+  .nav-tour__menu.open .nav-tour__list li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .nav-tour__menu.open .nav-tour__list li:last-child {
+    border-bottom: none;
+  }
+  .nav-tour__menu.open .nav-tour__list li a {
+    display: block;
+    padding: 16px;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+}
+
+/* 3) Мобильный сайдбар */
+@media (max-width: 480px) {
+  .nav-tour__logo-block {
+    display: flex;
+    order: 1;           /* ставим первым в строке */
+    padding-left: 16px; /* отступы по вкусу */
+  }
+  /* Показываем бургер */
+  .nav-tour__toggle {
+    display: block;
+    position: absolute;
+    order: 2;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+  
+  .nav-tour {
+    height: 56px;
+  }
+
+  /* Скрываем остальные части nav */
+
+  .nav-tour__action {
+    display: none;
+  }
+  .nav-tour__menu {
+    display: none;
+  }
+
+  /* Когда добавляется класс .open — показываем сайдбар */
+  .nav-tour__menu.open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    right: 0;               /* выезжает от левого края */
+    padding: 16px 0;
+    background: rgb(0 0 0 / 44%);
+    box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  .nav-tour__menu.open .nav-tour__list {
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+  }
+  .nav-tour__menu.open .nav-tour__list li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .nav-tour__menu.open .nav-tour__list li:last-child {
+    border-bottom: none;
+  }
+  .nav-tour__menu.open .nav-tour__list li a {
+    display: block;
+    padding: 16px;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+}
+
+
+/* ХЭДЕР */
+
+.tour-header {
+  /* border: 1px solid red; */
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/static/images/tourBack.png');
+  background-size: cover;
+}
+
+.header-tour-kg {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* или любая нужная тебе высота */
+}
+
+.tour-kyrg-butt {
+  flex: 6; /* 3/5 */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* border: 1px solid green; */
+  gap: 20px;
+  padding: 0 3rem;
+}
+
+.kg-text {
+  flex: 2; /* 2/5 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* border: 1px solid gold; */
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 0 3rem;
+   line-height: 2;
+}
+
+
+
+.tour-down-arrow {
+  flex: 1;
+}
+
+.tour-gps {
+  /* border: 1px solid #fff; */
+   font-family: 'Montserrat', sans-serif;
+  width: 391px;
+  height: 36px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #FFFFFF4D;
+
+}
+
+.tour-gps a {
+  font-size: 14px;
+  padding: 5px 5px;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  flex: 1;
+  text-decoration: none;
+  /* border: 1px solid red; */
+}
+
+.long-arrow {
+  width: 108px;
+  height: 59px;
+  background-color: #FFFFFF4D;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.long-arrow a {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  
+}
+
+.big-kg {
+  font-size: 66px;
+  color: #fff;
+  /* border: 1px solid yellow; */
+  font-weight: 800;
+  padding: 0;
+  margin: 0;
+}
+
+.tour-down-arrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.tour-down-arrow a {
+  width: 86px;
+  height: 50px;
+  background-color: #FFFFFF4D;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === Адаптация для планшетов и больших смартфонов === */
+@media (max-width: 768px) {
+  .header-tour-kg {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: 10%;
+    height: 70%
+  }
+  .tour-kyrg-butt {
+    padding: 0 1.5rem;
+    gap: 16px;
+  }
+  .tour-gps {
+    width: 100%;
+    max-width: 320px;
+    height: 32px;
+    gap: 8px;
+    border-radius: 16px;
+    margin-bottom: 8px;
+  }
+  .tour-gps a {
+    font-size: 12px;
+    gap: 8px;
+  }
+  .long-arrow {
+    width: 80px;
+    height: 48px;
+  }
+  .long-arrow img {
+    width: 24px;
+  }
+  .big-kg {
+    font-size: 64px;
+  }
+  .kg-text {
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 0 1.5rem;
+  }
+  .tour-down-arrow a {
+    width: 64px;
+    height: 40px;
+  }
+  .tour-down-arrow img {
+    width: 20px;
+  }
+}
+
+/* === Адаптация для узких смартфонов === */
+@media (max-width: 480px) {
+  .header-tour-kg {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: 10%;
+    height: 70%
+  }
+  .tour-kyrg-butt {
+    gap: 12px;
+    justify-content: start;
+  }
+  .tour-gps {
+    max-width: 100%;
+    height: 28px;
+    border-radius: 14px;
+  }
+  .tour-gps a {
+    font-size: 11px;
+    padding: 0 4px;
+    gap: 4px;
+  }
+  .long-arrow {
+    width: 56px;
+    height: 40px;
+    border-radius: 20px;
+  }
+  .long-arrow img {
+    width: 20px;
+  }
+  .big-kg {
+    font-size: 40px;
+    line-height: 1.1;
+  }
+  .kg-text {
+    font-size: 13px;
+    line-height: 1.5;
+    position: relative;
+    width: 50%;
+    align-self: flex-end;
+  }
+  .tour-down-arrow a {
+    width: 48px;
+    height: 32px;
+    border-radius: 16px;
+  }
+  .tour-down-arrow img {
+    width: 16px;
+  }
+}
+
+
+/* ЛОКАЦИИ */
+
+.locations-section {
+  /* margin: 100px 40px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #fff; */
+  /* height: 100vh; */
+}
+
+.locations-container {
+  /* max-width: 1200px; */
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.locations-title-wrapper {
+  text-align: start;
+  /* margin-bottom: 60px; */
+  /* border: 1px solid blue; */
+  padding: 0 6%;
+
+}
+
+.locations-title {
+  font-size: 40px;
+  font-weight: 500;
+  color: #000;
+}
+
+.locations-grid {
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  justify-content: center;
+  margin-bottom: 10%;
+  /* border: 1px solid green; */
+
+}
+
+.location-item {
+  height: 195px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  justify-self: center;
+  /* border: 1px solid red; */
+  max-width: 230px;
+  min-height: 135px;
+  margin: 0;
+  text-decoration: none;
+}
+
+.location-item img {
+  max-width: 230px;
+  min-width: 230px;
+  min-height: 135px;
+  max-height: 135px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.4s;
+}
+
+.location-item img:hover {
+  transform: scale(1.05);
+}
+
+
+.location-item p {
+  align-self: flex-start;
+  margin-top: 30px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* ======================================
+   Locations Section — адаптация
+   ====================================== */
+
+/* планшеты и небольшие десктопы */
+@media (max-width: 768px) {
+  .locations-section {
+    height: auto;           /* убираем 100vh */
+    padding: 60px 20px;     /* внутренняя вертикальная подушка */
+  }
+  .locations-title-wrapper {
+    padding: 0 20px;
+  }
+  .locations-title {
+    font-size: 32px;
+  }
+  .gallery-nav {
+    margin-bottom: 32px;
+    padding: 4px 8px;
+  }
+  .gallery-nav__link {
+    padding: 10px 24px;
+    font-size: 16px;
+  }
+  .locations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    padding: 0 20px;
+  }
+  .location-item {
+    max-width: none;
+  }
+  .location-item p {
+    font-size: 20px;
+    margin-top: 16px;
+  }
+}
+
+/* узкие смартфоны */
+@media (max-width: 480px) {
+  .locations-section {
+    padding: 40px 16px;
+  }
+  .locations-title {
+    font-size: 24px;
+    text-align: center;
+  }
+  .locations-title-wrapper {
+    padding: 0 16px;
+  }
+  .gallery-nav {
+    display: block;
+    width: 100%;
+    padding: 4px;
+    margin: 0 0 24px;
+    text-align: center;
+  }
+  .gallery-nav__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .gallery-nav__link {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 20px;
+  }
+  .locations-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 16px;
+  }
+  .location-item img {
+    width: 100%;
+    height: auto;
+  }
+  .location-item p {
+    font-size: 18px;
+    margin-top: 12px;
+    text-align: center;
+  }
+}
+
+
+/* ТУРЫ ПОДРОБНО  */
+
+.kel-su {
+  /* border: 1px solid red; */
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/static/images/kolsu.png');
+  background-size: cover;
+}
+
+.header-tour-about-kg {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* или любая нужная тебе высота */
+}
+
+.tour-kol-butt {
+  flex: 4; /* 3/5 */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* border: 1px solid green; */
+  gap: 20px;
+  padding: 0 3rem;
+}
+
+
+
+.tour-gps-kolsu {
+  /* border: 1px solid #fff; */
+  width: 530px;
+  height: 36px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #FFFFFF4D;
+
+}
+
+.tour-gps-kolsu a {
+  font-size: 14px;
+  padding: 5px 5px;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  flex: 1;
+  text-decoration: none;
+  /* border: 1px solid red; */
+}
+
+.long-arrow-kolsu {
+  width: 108px;
+  height: 59px;
+  background-color: #FFFFFF4D;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.long-arrow-kolsu a {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  
+}
+
+
+
+.tour-kolsu-arrow {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.tour-kolsu-arrow a {
+  width: 86px;
+  text-decoration: none;
+  color: #fff;
+  height: 50px;
+  background-color: #FFFFFF4D;
+  border-radius: 40px;
+  font-size: 40px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ================================
+   Header Tour About KG — адаптация
+   ================================ */
+
+/* Планшеты и небольшие десктопы */
+@media (max-width: 768px) {
+  /* .header-tour-about-kg {
+    height: auto;           авто-высота
+    padding: 40px 20px;     внутренние отступы
+  } */
+  .tour-kol-butt {
+    padding: 0 20px;
+    gap: 16px;
+  }
+  .tour-gps-kolsu {
+    width: 100%;
+    max-width: 400px;
+    /* margin: 0 auto; */
+    /* padding: 8px; */
+    /* gap: 12px; */
+  }
+  .tour-gps-kolsu a {
+    font-size: 12px;
+    gap: 8px;
+  }
+  .long-arrow-kolsu {
+    width: 60px;
+    height: 40px;
+  }
+  .long-arrow-kolsu img {
+    max-width: 24px;
+  }
+  .big-kg {
+    font-size: 72px;
+    line-height: 1.1;
+    /* text-align: center; */
+  }
+  .tour-kolsu-arrow a {
+    max-width: 280px;
+    font-size: 20px;
+    height: 56px;
+  }
+}
+
+/* Смартфоны */
+@media (max-width: 480px) {
+  .tour-gps-kolsu {
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    /* align-items: stretch; */
+    height: auto;
+    gap: 0;
+  }
+  .tour-gps-kolsu a {
+    padding: 6px 0;
+    text-align: center;
+  }
+  .long-arrow-kolsu {
+    width: 48px;
+    height: 32px;
+  }
+  .big-kg {
+    font-size: 38px;
+    margin-bottom: 16px;
+  }
+  .tour-kol-butt {
+    gap: 12px;
+    padding: 0 16px;
+    justify-content: center;
+    margin-top: 10%;
+  }
+  .tour-kolsu-arrow a {
+    max-width: 200px;
+    font-size: 16px;
+    height: 48px;
+  }
+}
+
+
+/* ДАТЫ ТУРА */
+
+.tour-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  color: #222;
+}
+
+.tour-dates-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 24px 32px;
+  width: 507px;
+  height: 428px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tour-dates-card__title {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.tour-dates-card__subtitle {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+.tour-dates-card__prices {
+  display: flex;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  width: 70%;
+}
+
+.tour-dates-card__column {
+  flex: 1;
+  padding: 12px 0;
+}
+
+.tour-dates-card__column--border {
+  border-left: 1px solid #eee;
+}
+
+.tour-dates-card__label {
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: #777;
+}
+
+.tour-dates-card__price {
+  font-size: 24px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Перекрашиваем колонки */
+.tour-dates-card__column--wed .tour-dates-card__label,
+.tour-dates-card__column--wed .tour-dates-card__price {
+  color: #2FA5AF;   /* синий для сред */
+}
+
+.tour-dates-card__column--fri .tour-dates-card__label,
+.tour-dates-card__column--fri .tour-dates-card__price {
+  color: #CF6F10;   /* оранжевый для пятниц */
+}
+
+.tour-dates-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tour-dates-card__month {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tour-dates-card__month-name {
+  font-size: 24px;
+  font-weight: 500;
+  margin-right: 3px;
+  /* border: 1px solid red; */
+}
+
+.tour-dates-card__day {
+  cursor: pointer;
+  font-size: 24px;
+  color: #555;
+  /* margin-right: 4px; */
+}
+
+.tour-dates-card__day--wed {
+  color: #2FA5AF;
+}
+
+.tour-dates-card__day--fri {
+  color: #CF6F10;
+}
+
+/* =====================
+   Tablet (≤768px)
+   ===================== */
+@media (max-width: 768px) {
+  .tour-dates-card {
+    width: 400px;
+    height: 338px;
+    /* padding: 20px 24px; */
+  }
+  .tour-dates-card__title {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+  .tour-dates-card__subtitle {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+  .tour-dates-card__prices {
+    width: 80%;
+    margin-bottom: 16px;
+  }
+  .tour-dates-card__label {
+    font-size: 14px;
+  }
+  .tour-dates-card__price {
+    font-size: 20px;
+  }
+  .tour-dates-card__list {
+    gap: 10px;
+  }
+  .tour-dates-card__month-name {
+    font-size: 20px;
+  }
+  .tour-dates-card__day {
+    font-size: 20px;
+  }
+}
+
+/* =====================
+   Mobile (≤480px)
+   ===================== */
+@media (max-width: 480px) {
+  .tour-dates-card {
+    width: 280px;
+    height: auto;
+    /* padding: 12px 16px; */
+  }
+  .tour-dates-card__title {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  .tour-dates-card__subtitle {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .tour-dates-card__prices {
+    width: 70%;
+    margin-bottom: 12px;
+  }
+  .tour-dates-card__label {
+    font-size: 12px;
+  }
+  .tour-dates-card__price {
+    font-size: 18px;
+  }
+  .tour-dates-card__list {
+    gap: 6px;
+  }
+  .tour-dates-card__month-name {
+    font-size: 18px;
+  }
+  .tour-dates-card__day {
+    font-size: 18px;
+  }
+}
+
+
+.tour-description {
+  max-width: 700px;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.tour-description p {
+  margin-bottom: 16px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.tour-description ul {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+.tour-description ul li {
+  width: 70%;
+  align-self: center;
+}
+
+
+/* Раздел “Программа путевки” */
+.program-section {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.program-section__title {
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+/* Навигация по дням */
+.program-nav {
+  display: inline-flex;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.program-nav__day {
+  background: none;
+  border: none;
+  font-size: 18px;
+  padding: 8px;
+  cursor: pointer;
+  position: relative;
+}
+
+.program-nav__day.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 3px;
+  background-color: #00C2FF;
+  border-radius: 2px;
+}
+
+/* Карусель */
+.program-carousel {
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow:hidden;
+  margin-bottom: 5%;
+}
+
+.program-carousel__arrow {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 999999;
+}
+
+/* Трек скрывает ненужные слайды */
+.program-carousel__track {
+  flex: 1;
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* вот анимация перехода */
+  will-change: transform;
+  flex-direction:row;
+  /* gap:32px; */
+}
+
+/* Слайд по умолчанию невидим */
+.program-carousel__slide {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-right: 20%;
+}
+
+/* Активный слайд — flex row */
+.program-carousel__slide.active {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+/* Блок с изображениями */
+.program-carousel__media {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+}
+
+/* Общие стили для колонок */
+.media-col {
+  display: flex;
+  gap: 16px;
+}
+
+/* Левая колонка — вертикальная */
+.media-col--tall {
+  flex: 1; /* занимает 50% ширины */
+  flex-direction: column;
+}
+
+/* Правая колонка — две картинки одна под другой */
+.media-col--small {
+  flex: 1;               /* тоже 50% ширины */
+  flex-direction: column;
+}
+
+/* Изображения в колонках */
+.media-col__img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Высота для колонки с двумя мелкими фото */
+.media-col--small .media-col__img {
+  height: 135px;  /* по макету */
+}
+
+/* Высота для высокой колонки */
+/* Делаем так, чтобы суммарная высота левого фото 
+   = 2 * 135px + 16px (gap) = 286px */
+.media-col--tall .media-col__img {
+  height: 364px;
+}
+
+/* Контейнер для одной строки изображений */
+.program-carousel__images {
+  display: flex;
+  gap: 16px;
+}
+
+/* Большое фото */
+.program-carousel__media .large {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Мелкие фото в ряд */
+.program-carousel__media .small {
+  width: calc(50% - 8px);
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Текст справа от картинок */
+.program-carousel__text {
+  flex: 1;
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+}
+
+.program-carousel__arrow.prev {
+  margin-right: 24px;  /* отодвинуть левую стрелку вправо */
+}
+.program-carousel__arrow.next {
+  margin-left: 24px;   /* отодвинуть правую стрелку влево */
+}
+
+/* === Tablet (≤768px) === */
+@media (max-width: 768px) {
+  .program-carousel__slide,
+  .program-carousel__slide.active {
+    flex-direction: column;      /* из row → column */
+    gap: 16px;                   /* чуть меньше отступ */
+  }
+
+  .program-carousel__media,
+  .program-carousel__text {
+    width: 100%;                 /* каждая на всю ширину */
+  }
+
+  .program-carousel__media {
+    order: 1;                    /* первая в колонке */
+    margin-bottom: 12px;
+  }
+
+  .program-carousel__text {
+    order: 2;                    /* текст под картинками */
+    text-align: center;          /* можно центрировать текст */
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  /* .program-carousel__arrow.prev,
+  .program-carousel__arrow.next {
+    display: none;               /* скрываем стрелки 
+  } */
+
+  .program-carousel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 12px 0;           /* вертикальный отступ между строками */
+    align-items: center;   /* центрируем по высоте ячеек */
+  }
+
+  /* 2) Первая строка — стрелки */
+  .program-carousel__arrow.prev {
+    grid-column: 1 / 2;
+    grid-row:    1 / 2;
+    justify-self: start;   /* слева */
+    margin: 0;             /* сбросим старые отступы */
+  }
+  .program-carousel__arrow.next {
+    grid-column: 2 / 3;
+    grid-row:    1 / 2;
+    justify-self: end;     /* справа */
+    margin: 0;
+  }
+
+  /* 3) Вторая строка — сам трек */
+  .program-carousel__track {
+    grid-column: 1 / 3;
+    grid-row:    2 / 3;
+    overflow: visible;   /* чтобы мы могли скроллить внутри, если нужно */
+    gap: 10%;
+  }
+
+  /* 4) Каждый слайд подряд, медиа над текстом */
+  .program-carousel__slide,
+  .program-carousel__slide.active {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .program-carousel__media {
+    width: 100%;
+    order: 1;
+  }
+  .program-carousel__text {
+    width: 100%;
+    order: 2;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .program-nav {
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .program-nav__day {
+    font-size: 16px;
+    padding: 6px 8px;
+  }
+}
+
+/* === Mobile (≤480px) === */
+@media (max-width: 480px) {
+  .program-section {
+    padding: 40px 16px;
+  }
+
+  .program-section__title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .program-nav {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .program-nav__day {
+    font-size: 14px;
+    padding: 4px 6px;
+  }
+
+  .program-carousel__slide,
+  .program-carousel__slide.active {
+    gap: 12px;
+  }
+  .program-carousel__text {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+}
+
+
+
+
+/* АККАРДИОН */
+
+.accordion-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  color: #222;
+}
+
+/* Блок с заголовком */
+.accordion-block {
+  margin-bottom: 40px;
+}
+
+.accordion-block__title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Общие стили аккордеона */
+.accordion {
+  border-top: 1px solid #e0e0e0;
+}
+
+.accordion__item + .accordion__item {
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Заголовок пункта */
+.accordion__header {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 16px 0;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Иконка + / – */
+.accordion__icon {
+  font-size: 20px;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+/* Содержимое (по умолчанию скрыто) */
+.accordion__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+/* Когда .open — разворачиваем и поворачиваем иконку */
+.accordion__item.open .accordion__content {
+  max-height: 500px; /* достаточно, чтобы вместить контент */
+}
+
+.accordion__item.open .accordion__icon {
+  transform: rotate(45deg); /* "+" превращается в "×" */
+}
+
+/* О НАС */
+
+
+.oNas {
+  /* border: 1px solid red; */
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/static/images/oNas2.jpg');
+  background-position: center;   /* центрируем */
+  background-repeat: no-repeat;  /* чтобы не повторялась */
+  background-size: cover;
+}
+
+.header-oNas-kg {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh; /* или любая нужная тебе высота */
+}
+
+@media (max-width: 768px) {
+  .header-oNas-kg {
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: start;
+    position: relative;
+    top: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-oNas-kg {
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: start;
+    position: relative;
+    top: 10%;
+  }
+}
+
+.tour-oNas-butt {
+  /* flex: 4; 3/5 */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* border: 1px solid green; */
+  gap: 20px;
+  padding: 0 3rem;
+}
+
+
+
+
+/* ===== Секция “О нас” ===== */
+
+/* Лого в начале секции */
+.about-us__logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.about-us__logo img {
+  max-width: 100%;
+  width: 880px;
+  height: 127px;
+  object-fit: contain;
+}
+
+.about-us {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px;
+  color: #222;
+}
+
+/* Интро (заголовок + подзаголовок) */
+.about-us__intro {
+  text-align: center;
+  margin-bottom: 8rem;
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+}
+
+.about-us__title {
+  margin-bottom: 16px;
+}
+.about-us__subtitle {
+  max-width: 800px;
+  margin: 0 auto;
+
+}
+
+/* Основная часть: галерея + текст */
+.about-us__main {
+  display: grid;
+  grid-template-columns: 547px 1fr;
+  column-gap: 40px;
+  align-items: end;
+}
+
+.about-us__gallery {
+  display: flex;
+  gap: 16px;
+  height: 364px;
+}
+
+
+/* Общие стили для колонок */
+.media-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+/* Левая «высокая» колонка */
+/* .media-col--tall {
+  flex: 1;
+} */
+
+/* Левая «высокая» колонка */
+.media-colTall .media-col__img {
+  width: 100%;
+  height: 100%;    /* растягиваем по полной высоте 364px */
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Правая колонка с двумя мелкими */
+/* .media-col--small {
+  flex: 1;
+} */
+.media-col--small .media-col__img {
+  width: 100%;
+  height: calc((364px - 16px) / 2); /* две картинки + 16px gap = 364 */
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Текстовая колонка */
+.about-us__text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24.1px;
+  color: #000000;
+  /* border: 1px solid red; */
+  /* height: 100%; */
+  align-self: end;
+}
+
+/* === Планшеты и небольшие десктопы (≤768px) === */
+@media (max-width: 768px) {
+  .about-us__main {
+    display: grid;
+    /* одна колонка, две строки */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    row-gap: 24px;
+  }
+  /* явно задаём области (необязательно, но для читаемости) */
+  .about-us__gallery {
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: center;
+  }
+  .about-us__text {
+    grid-row: 2;
+    grid-column: 1;
+    text-align: center;
+  }
+}
+
+/* === Смартфоны (≤480px) === */
+@media (max-width: 480px) {
+  .about-us__main {
+    row-gap: 16px;
+    padding: 0 16px;
+  }
+  .about-us__gallery {
+    height: auto;       /* пусть подстраивается по контенту */
+    display: flex;
+    /* flex-direction: column; */
+    gap: 12px;
+  }
+
+
+
+  .media-colTall .media-col__img,
+  .media-col--small .media-col__img {
+    height: auto;       /* картинки будут свои пропорции */
+  }
+  .about-us__text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+.textPart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+}
+
+.partcontainer {
+  width: 70%;
+}
+
+
+
+
+
+
+/* ПОЧЕМУ МЫ */
+
+/* *,
+*::before,
+*::after { box-sizing: border-box; } */
+
+.why-spiral{
+  width: min(1000px, 92vw);
+  margin: 40px auto;
+}
+
+.why-grid{
+  --gap: 16px;
+  --left-top: 42%;     /* высота #pm1 в ЛЕВОМ столбце */
+  --right-top: 58%;    /* высота #pm2 в ПРАВОМ столбце */
+  --narrow-width: 78%; /* относительная ширина «узких» */
+
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+
+  /* держим идеальный квадрат */
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+}
+
+.why-col{
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  height: 100%;
+}
+
+.why-col.left {
+  margin-right: -12%;
+}
+
+.why-col.right {
+  margin-left: -12%;
+}
+
+/* Распределение высоты в колонках */
+.why-col.left  > #pm1{ height: var(--left-top); }
+.why-col.left  > #pm3{ height: calc(100% - var(--left-top) - var(--gap)); }
+
+.why-col.right > #pm2{ height: var(--right-top); }
+.why-col.right > #pm4{ height: calc(100% - var(--right-top) - var(--gap)); }
+
+/* Карточка */
+.why-card{
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ccc center / cover no-repeat;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.why-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+/* Узкая/широкая */
+.why-card.narrow { width: var(--narrow-width); }
+.why-card.wide   { width: 100%; }
+
+/* Прижим узких к нужным краям для «спирали» */
+.why-col.left  > .narrow { align-self: flex-end; }  /* #pm3 вправо */
+.why-col.right > .narrow { align-self: flex-start; }/* #pm2 влево  */
+
+/* Контент/оверлей */
+.why-card__overlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.55) 100%);
+  pointer-events: none;
+}
+
+.why-card__content{
+  position: absolute;
+  left: 14px; right: 14px; bottom: 14px;
+  color: #fff;
+  display: grid;
+  gap: 6px;
+}
+
+.why-card__title{
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+.why-card__text{
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0 0 6px 0;
+  opacity: .95;
+}
+.why-card__cta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  background: rgba(247,247,247, .9);
+  color: #000;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+/* «растянутая» ссылка по всей карточке */
+.why-card__link{
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+/* ЛОГО по центру */
+.why-logo{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: auto;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Адаптив */
+@media (max-width: 900px){
+  .why-grid{ --narrow-width: 82%; }
+  .why-logo{ width: 96px; }
+  .why-card__title{ font-size: 18px; }
+  .why-card__text{ font-size: 13px; }
+}
+
+@media (max-width: 680px){
+  .why-grid{
+    aspect-ratio: auto;          /* отпускаем квадратность на мобилке */
+    grid-template-columns: 1fr;  /* одна колонка */
+  }
+  .why-col{ height: auto; }
+
+  
+
+  /* Высоты карточек — авто, чтобы естественно тянулось содержимое */
+  .why-col.left  > #pm1,
+  .why-col.left  > #pm3,
+  .why-col.right > #pm2,
+  .why-col.right > #pm4{
+    height: auto;
+    width: 90%;
+  }
+
+  .why-card.narrow{ width: 100%; align-self: stretch; }
+  .why-logo{ width: 80px; }
+}
+
+/* ключевые слова для GRID: start / end */
+#pm3 { align-self: flex-start; } 
+
+#pm2 { align-self: flex-end; }   
+
+/* ====== АДАПТАЦИЯ (ПЛАНШЕТЫ) ====== */
+@media (max-width: 1024px){
+  .why-grid{
+    --gap: 14px;          /* поменьше зазоры */
+    --narrow-width: 85%;  /* узкие карточки чуть шире */
+    /* подправим пропорции столбцов */
+    --left-top: 48%;
+    --right-top: 52%;
+  }
+  .why-logo{ width: 96px; }
+  .why-card__title{ font-size: 18px; }
+  .why-card__text{  font-size: 13px; }
+}
+
+/* узкие планшеты/большие телефоны (iPad portrait и т.п.) */
+@media (max-width: 820px){
+  .why-grid{
+    --gap: 12px;
+    --narrow-width: 88%;
+    /* можно слегка “сблизить” верх/низ */
+    --left-top: 50%;
+    --right-top: 50%;
+  }
+  .why-logo{ width: 88px; }
+  .why-card__title{ font-size: 17px; }
+  .why-card__text{  font-size: 13px; }
+}
+
+/* ====== АДАПТАЦИЯ (МОБИЛЬНЫЕ) ====== */
+@media (max-width: 680px){
+  .why-grid{
+    /* на мобилке не держим жесткий квадрат — даём контенту течь */
+    aspect-ratio: auto;
+    grid-template-columns: 1fr; /* одна колонка */
+    gap: 12px;
+  }
+  .why-col{
+    height: auto;
+    gap: 12px;
+  }
+
+  /* высоты отпускаем, работаем через aspect-ratio карточек */
+  /* .why-col.left  > #pm1,
+  .why-col.left  > #pm3,
+  .why-col.right > #pm2,
+  .why-col.right > #pm4{
+    height: auto;
+  } */
+
+  /* базовая карточка: горизонтальная пропорция */
+  .why-card{
+    width: 100%;
+    aspect-ratio: 16 / 10;   /* стабильно смотрится на мобилках */
+    border-radius: 12px;
+  }
+
+
+
+  /* смещения, чтобы осталось ощущение «лесенки»,
+     но в пределах контейнера (ничего не выпирает) */
+ 
+  .why-col.right > #pm4{ align-self: flex-end;   } /* правый край */
+
+  /* текст и кнопка чуть компактнее */
+  .why-card__title{ font-size: 16px; }
+  .why-card__text{  font-size: 12px; }
+  .why-card__cta{
+    font-size: 13px;
+    padding: 7px 10px;
+    border-radius: 18px;
+  }
+
+  /* логотип по центру — поменьше */
+  .why-logo{ display: none; }
+}
+
+/* сверх-компактные телефоны */
+@media (max-width: 420px){
+  /* .why-card{ aspect-ratio: 4 / 3; }     */
+  /* .why-card.narrow{ aspect-ratio: 3 / 4; } */
+  .why-logo{ display: none; }
+  .why-card.wide {
+    width: 90%;
+  }
+  #lineUnder {
+    top: 1px;
+  }
+
+  /* .partcontainer p {
+    margin-top: 80%;
+  } */
+
+}
+
+
+
+
+/* ===== СЕКЦИЯ «Регион» ===== */
+.region-section {
+  padding: 80px 0;
+}
+
+.region-section_container {
+  width: 100%;
+  /* height: 130vh; */
+  margin: 0 auto;
+  background-image: url("/static/images/regionBack.png");
+  background-size: contain;
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: start ;
+  align-items: center;
+  padding: 5% 0;
+}
+
+/* Интро и заголовок */
+.region-section__intro {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  color: #000;
+  margin:3rem 0;
+}
+
+.region-section__title {
+  text-align: left;
+  font-weight: 600;
+  font-size: 70px;
+  margin-bottom: 40px;
+  color: #fff;
+  /* width: 90%; */
+
+}
+
+/* Сетка карточек: 3 колонки на десктопе, 2 на планшете, 1 на мобилке */
+.region-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* gap: 16px; */
+  width: 90%;
+  /* align-self: center; */
+  /* border: 1px solid red; */
+}
+
+@media (max-width: 992px) {
+  .region-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .region-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Карточка региона */
+.region-card {
+  position: relative;
+  width: 100%;
+  padding-top: 60%;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.region-card:hover {
+  transform: scale(1.03);
+}
+
+/* Название поверх картинки */
+.region-card__label {
+  position: absolute;
+  /* width: 100%; */
+  bottom: 16px;
+  right: 16px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  /* border: 1px solid red; */
+}
+
+/* СТРАНЫ */
+
+/* Секция и контейнер */
+.extent-section {
+  padding: 80px 20px;
+  /* background: #f7f7f7; */
+}
+
+.extent-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Заголовок секции */
+.extent-section__heading {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 40px;
+  color: #222;
+}
+
+/* Сетка карточек */
+.extent-grid {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+/* Карточка */
+.extent-card {
+  display: flex;
+  flex-direction: column;
+  width: 434px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.241);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.extent-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Медиаблок */
+.extent-card__media {
+  width: 100%;
+  /* padding-top: 56.25%; соотношение 16:9, при необходимости поправить */
+  height: 316px; 
+  background-size: cover;
+  background-position: center;
+}
+
+/* Подпись */
+.extent-card__label {
+  padding: 0 16px;
+  font-size: 32px;
+  font-weight: 500;
+  color: #222;
+  text-align: left;
+
+}
+
+/*==== СЕКЦИЯ «Круглогодичная работа» ====*/
+
+
+.year-round {
+  width: 100vw;
+  margin: 0 auto;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.yearCont {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+}
+
+/* Одинаковые стили для обоих параграфов */
+.year-round__text {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #000;
+  margin: 0 auto;
+  width: 90%;
+}
+
+/* Дополнительные отступы */
+
+.year-round__text--top {
+  margin-bottom: 40px;
+}
+.year-round__text--bottom {
+  margin-top: 40px;
+}
+
+.year-round__image {
+  display: flex;
+  /* border: 1px solid red; */
+  justify-content: center;
+  width: min(1080px, 100%);
+  margin: 0 auto;
+  overflow: hidden; 
+}
+
+/* Лого между текстами */
+.year-round__image img {
+  display: block;
+  /* margin: 10rem auto; */
+  width: 100%;    
+  height: auto;
+  clip-path: inset(0 0 9% 0);
+  /* border: 1px solid green; */
+
+}
+
+/* СТРАНИЧКА ГАЛЕРЕЯ */
+
+
+/* Контейнер тулбара */
+.gallery-nav {
+  background-color: #F7F7F7;
+  border-radius: 30px;
+  display: inline-block;   /* занять по контенту */
+  padding: 4px;
+  margin-bottom: 40px;
+}
+
+/* Убираем стандартные маркеры и делаем флекс */
+.gallery-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+/* Каждый пункт растягивается по содержимому */
+.gallery-nav__item {
+  margin: 0;
+}
+
+/* Ссылка-плитка */
+.gallery-nav__link {
+  display: block;
+  padding: 12px 32px;
+  font-size: 18px;
+  color: #222;
+  text-decoration: none;
+  border-radius: 26px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Состояние «активной» вкладки */
+.gallery-nav__link--active {
+  background-color: #FF9500; /* оранжевый по макету */
+  color: #FFF;
+}
+
+/* Hover-эффект */
+.gallery-nav__link:not(.gallery-nav__link--active):hover {
+  background-color: rgba(255,149,0,0.1);
+}
+
+.big-gallery {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  /* flex-direction: column; */
+}
+
+
+
+
+
+/* ----------------------------------
+    Адаптация хедера для мобилок
+   ---------------------------------- */
+@media (max-width: 480px) {
+  /* прячем десктопное меню, показываем бургер */
+  /* .nav-menu { display: none; } */
+  .lang { display: none; }
+
+  /* сама панель остаётся, но выровняем элементы */
+  .navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 16px;
+    height: 56px;
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-tour__submenu {
+    left: -245%;
+    top: -25%
+  }
+
+  /* бургер слева  */
+  .mobile-toggle {
+    display: block;
+    position: absolute;
+    right: 10%;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    background-color: #00000000;
+    border: none;
+  }
+
+  /* .nav-menu {
+    display: none;
+    position: absolute;
+    top: 56px;     под высоту вашего navbar
+    right: 10%;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+    или фон по дизайну
+  } */
+
+  /* .nav-menu.open {
+    display: flex;                    снова отображаем список
+    flex-direction: column;           вертикальная колонка
+    position: absolute;               
+    top: 56px;                        сразу под navbar
+    right: 10%;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.85);  полупрозрачный чёрный фон
+    z-index: 999;                     над всем остальным
+  } */
+
+   /* Отделяем пункты друг от друга */
+  .nav-menu.open li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-menu.open li:last-child {
+    border-bottom: none;
+  }
+
+  /* Белые читаемые ссылки */
+  .nav-menu.open li a {
+    display: block;
+    padding: 16px;
+    color: #FFF;                      /* белый текст */
+    font-size: 18px;
+    text-decoration: none;
+  }
+  .nav-menu.open li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+
+  /* ----- Контент хедера ----- */
+  .header-content {
+    position: relative;
+    height: calc(100vh - 56px);
+    padding-top: 0;
+    display: block; /* убираем флекс-центр */
+  }
+
+  /* Текст «ТУРЫ» (или набор иконок) поверх фона */
+  .header-content .header-title-mobile {
+    margin: 0 auto;
+    padding-top: 24px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    /* сюда можете вставить ваши SVG-иконки вместо текста */
+  }
+
+  /* Логотип под «ТУРЫ» */
+  .header-content .header-logo-mobile {
+    display: block;
+    margin: 16px auto;
+    width: 120px; /* подгоните под ваш размер */
+  }
+
+  /* Кнопка «Записаться на тур!» */
+  .text-button {
+    position: absolute;
+    bottom: 80px; /* чуть выше стрелки */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
+    padding: 10px;
+    font-size: 14px;
+    background: white;
+  }
+
+  /* Стрелка вниз */
+  .img-button {
+    position: absolute;
+    top: 92%;
+    height: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .img-button img {
+    width: 32px;
+    height: auto;
+  }
+}
+
+/* Спрятать десктоп-меню и показать бургер */
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    /* top: 16px; */
+    z-index: 1001;
+    display: block;
+    position: absolute;
+    right: 10%;
+    border: none;
+  }
+
+  .nav-container {
+    position: relative;
+  }
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%; left: 80%;
+    background-color: rgb(0 0 0 / 44%); /* можно сделать прозрачным */
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 0;
+    gap: 12px;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-menu.open li a {
+    display: block;
+    padding: 16px;
+    color: #FFF;                      /* белый текст */
+    font-size: 18px;
+    text-decoration: none;
+  }
+  .nav-menu.open li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .lang {
+    display: none;
+  }
+}
+
+
+/* === Базовая адаптация для планшетов === */
+@media (max-width: 768px) {
+  .tours-section {
+    padding: 40px 0;
+  }
+
+  .tochkiknopki {
+    height: auto;
+    margin: 30% 0;
+  }
+
+
+
+  /* Заголовок меньшего размера и без <br> */
+  .tours-section .tours-title {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  /* Карусель становится уже, карточки мельче */
+  .tour-card {
+    min-width: 320px;
+    min-height: 380px;
+    gap: 0;
+    margin: 5%;
+    padding: 16px;
+    
+  }
+  .tour-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .tour-dates span {
+    font-size: 28px;
+  }
+  .tour-dates small {
+    font-size: 18px;
+  }
+  .tour-btn {
+    width: 200px;
+    height: 48px;
+    font-size: 14px;
+    margin-bottom: 1rem;
+  }
+
+  /* Блок «Или — Выбери свою поездку» */
+  .stan {
+    margin-top: 40px;
+  }
+  .stan > h2 {
+    font-size: 20px;
+  }
+  .cards-stan {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  .cardstan {
+    flex: 1 1 calc(50% - 16px);
+    max-width: calc(50% - 16px);
+  }
+  .cardstan img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+  .cardstan h3 {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+  .cardstan button {
+    font-size: 14px;
+    padding: 8px 12px;
+    align-self: center;
+    margin-top: 1rem;
+  }
+}
+
+/* === Дополнительная адаптация для смартфонов === */
+@media (max-width: 480px) {
+  .tours-section {
+    padding: 24px 8px;
+  }
+  .tours-section .tours-title {
+    font-size: 20px;
+  }
+
+  /* Карточки в карусели во всю ширину экрана */
+  .tour-card {
+    min-width: 280px;
+    min-height: 330px;
+    margin-left: 280px;
+  }
+
+  #last-tour-card {
+    margin-right: 280px;
+  }
+
+  /* Блок «Или — Выбери свою поездку» — одна колонка */
+  .cards-stan {
+    flex-direction: column;
+  }
+  .cardstan {
+    flex: 1 1 100%;
+    max-width: 100%;
+    align-items: center;
+  }
+  .cardstan h3 {
+    font-size: 14px;
+  }
+  .cardstan button {
+    width: auto;
+    font-size: 14px;
+    align-self: center;
+    margin-top: 1rem;
+  }
+}
+
+/* ПОЧЕМУ МЫ */
+
+/* === Планшеты и мелкие ноуты === */
+@media (max-width: 768px) {
+  .whyUs {
+    /* вместо 100vh пусть подстроится по содержимому */
+    height: auto;
+    padding: 40px 5%;
+  }
+  .whyUs-container {
+    flex-direction: column;
+    height: auto;
+  }
+  .whyUs-left,
+  .whyUs-right {
+    width: 100%;
+    /* сбрасываем min-height, чтобы текст не обрезался */
+    min-height: auto;
+    padding: 20px 0;
+  }
+  .whyUs-left img {
+    /* картинка не съезжает слишком высоко */
+    max-height: 300px;
+  }
+  .whyUs-right h2 {
+    font-size: 32px;
+  }
+  .whyUs-right p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+/* === Смартфоны === */
+@media (max-width: 480px) {
+  .whyUs {
+    padding: 24px 3%;
+  }
+  .whyUs-left img {
+    /* ещё сильнее уменьшаем */
+    max-height: 200px;
+  }
+  .whyUs-right h2 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .whyUs-right p {
+    font-size: 13px;
+    line-height: 1.3;
+    text-align: center;
+  }
+}
+
+/* НАША КОМАНДА */
+
+/* ============= Планшеты (и узкие ноутбуки) ============= */
+@media (max-width: 768px) {
+  .ourTeam {
+    padding: 40px 5%;
+  }
+  .ourTeam-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .ourTeam-left,
+  .ourTeam-right {
+    width: 100%;
+    padding: 20px 0;
+    /* сбрасываем min-height, чтобы текст и картинка занимали ровно столько места, сколько нужно */
+    min-height: auto;
+  }
+  .ourTeam-left img {
+    /* уменьшаем высоту картинки, чтобы она не «убегала» */
+    max-height: 300px;
+  }
+  .ourTeam-right h2 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .ourTeam-right p {
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+  }
+   .reviews-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .reviews {
+    padding: 0;
+  }
+}
+
+/* ============= Мобильные (телефоны) ============= */
+@media (max-width: 480px) {
+  .ourTeam {
+    padding: 24px 3%;
+  }
+
+  .BigName {
+    font-size: 50px;
+  }
+  .ourTeam-left img {
+    max-height: 200px;
+  }
+  .ourTeam-right h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .ourTeam-right p {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  
+  .reviews-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .reviews {
+    padding: 0;
+  }
+}
+
+
+/* ФОРМА */
+/* === Планшеты и узкие экраны (≤768px) === */
+@media (max-width: 768px) {
+  .application-section {
+    padding: 60px 20px;
+    height: auto;              /* пусть высота подстраивается */
+    align-items: flex-start;   /* выравнивание по началу */
+  }
+
+  .region-section__title {
+    font-size: 60px;
+  }
+
+  .application-image {
+    display: none;
+  }
+  .application-form {
+    max-width: 100%;           /* растягиваем во всю ширину */
+    /* padding: 0 16px; */
+  }
+
+  .form-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;  /* для заголовка и .phone-alt */
+  }
+  .form-inner h2 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .form-inner form {
+    width: 100%;
+    max-width: 360px;      /* или 100% без max-width, если хотите полную ширину контейнера */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  /* form {
+    gap: 12px;
+  } */
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"] {
+    height: 48px;
+    width: 90vw;
+    max-width: 100%;
+    font-size: 14px;
+  }
+  .email-block {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    display: block;
+  }
+  .optional {
+    text-align: right;
+  }
+  .consent {
+    font-size: 13px;
+  }
+  .submit-btn {
+    width: 50%;
+    height: 50px;
+    font-size: 16px;
+  }
+  .phone-alt {
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+  }
+  .phone-alt span {
+    font-size: 16px;
+  }
+}
+
+/* === Смартфоны (≤480px) === */
+@media (max-width: 480px) {
+  .media-col--tall .media-col__img {
+    height: 100%;
+  }
+
+  .reviews-header-two h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+  .application-section {
+    padding: 40px 0;
+  }
+  .form-inner h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    
+  }
+  .region-section__title {
+    font-size: 60px;
+  }
+  .form-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;  /* для заголовка и .phone-alt */
+  }
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"] {
+    height: 44px;
+    font-size: 14px;
+    max-width: 100%;
+  }
+  .submit-btn {
+    height: 48px;
+    font-size: 14px;
+    padding: 0 12px;
+  }
+  .optional {
+    font-size: 12px;
+  }
+  .consent {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  .phone-alt {
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .phone-alt span {
+    font-size: 15px;
+  }
+}
