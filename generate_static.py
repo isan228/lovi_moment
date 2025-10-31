@@ -212,6 +212,33 @@ def main():
     if STATIC_DIR.exists():
         shutil.copytree(STATIC_DIR, static_output)
     
+    # Нормализация регистра путей для GitHub Pages (case-sensitive)
+    # Дублируем каталоги верхнего уровня с нижним регистром, если в шаблонах используются lower-case пути
+    def mirror_dir_lowercase(src_dir_name: str):
+        src = static_output / src_dir_name
+        dst = static_output / src_dir_name.lower()
+        if src.exists() and not dst.exists():
+            try:
+                shutil.copytree(src, dst)
+                print(f"Создана зеркальная копия: {src_dir_name} -> {src_dir_name.lower()}")
+            except Exception as e:
+                print(f"Не удалось создать копию {src_dir_name}: {e}")
+
+    mirror_dir_lowercase('CSS')
+    mirror_dir_lowercase('JS')
+
+    # Дублируем видеофайлы с .MP4 в .mp4 (часто пути в шаблонах в нижнем регистре)
+    images_dir = static_output / 'images'
+    if images_dir.exists():
+        for p in images_dir.glob('*.MP4'):
+            lower = p.with_suffix('.mp4')
+            if not lower.exists():
+                try:
+                    shutil.copy2(p, lower)
+                    print(f"Создан дубликат видео c нижним регистром: {p.name} -> {lower.name}")
+                except Exception as e:
+                    print(f"Не удалось создать дубликат {p.name}: {e}")
+    
     # Обрабатываем шаблоны
     print("Обрабатываю шаблоны...")
     for template_file in TEMPLATES_DIR.glob('*.html'):
